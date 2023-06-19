@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-17T07:56:06.991Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="0r3NonTBSrbVBYoTfmYY" version="21.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-19T04:53:07.928Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="oTEq7qhixFhwSODbOmj3" version="21.4.0" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1861" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -32,7 +32,7 @@
         <mxCell id="bl8yfyfB_bJRX0V0p2GD-12" value="氏名(姓名分ける),e-mail.住所," style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="bl8yfyfB_bJRX0V0p2GD-9" vertex="1">
           <mxGeometry y="78" width="180" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-3" value="電話番号,メッセージ" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="bl8yfyfB_bJRX0V0p2GD-9">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-3" value="電話番号,メッセージ" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="bl8yfyfB_bJRX0V0p2GD-9" vertex="1">
           <mxGeometry y="104" width="180" height="26" as="geometry" />
         </mxCell>
         <mxCell id="qMaIDWYa7PjaukdQb-Qr-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="bl8yfyfB_bJRX0V0p2GD-13" target="bl8yfyfB_bJRX0V0p2GD-9" edge="1">
@@ -46,7 +46,7 @@
         <mxCell id="bl8yfyfB_bJRX0V0p2GD-14" value="部屋選択" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="bl8yfyfB_bJRX0V0p2GD-13" vertex="1">
           <mxGeometry y="26" width="180" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-0" value="日程選択（空き室カレンダー）" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="bl8yfyfB_bJRX0V0p2GD-13">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-0" value="日程選択（空き室カレンダー）" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="bl8yfyfB_bJRX0V0p2GD-13" vertex="1">
           <mxGeometry y="52" width="180" height="26" as="geometry" />
         </mxCell>
         <mxCell id="bl8yfyfB_bJRX0V0p2GD-17" value="宿泊プラン一覧ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#D4E1F5;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -112,7 +112,7 @@
         <mxCell id="qMaIDWYa7PjaukdQb-Qr-15" value="自分の書き込んだレスを見る" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="qMaIDWYa7PjaukdQb-Qr-13" vertex="1">
           <mxGeometry y="52" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="qMaIDWYa7PjaukdQb-Qr-16" target="qMaIDWYa7PjaukdQb-Qr-11">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="qMaIDWYa7PjaukdQb-Qr-16" target="qMaIDWYa7PjaukdQb-Qr-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="qMaIDWYa7PjaukdQb-Qr-16" value="管理者ログイン画面" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -120,7 +120,7 @@
             <mxRectangle x="220" y="80" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-19" value="会員登録なし。Seederで" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qMaIDWYa7PjaukdQb-Qr-16">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-19" value="会員登録なし。Seederで" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qMaIDWYa7PjaukdQb-Qr-16" vertex="1">
           <mxGeometry y="26" width="180" height="26" as="geometry" />
         </mxCell>
         <mxCell id="qMaIDWYa7PjaukdQb-Qr-17" value="アカウントを作っておく" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qMaIDWYa7PjaukdQb-Qr-16" vertex="1">
@@ -156,30 +156,16 @@
             <mxRectangle x="340" y="380" width="170" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-26" value="予約枠一覧(部屋数とは別)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qMaIDWYa7PjaukdQb-Qr-27">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-26" value="予約枠一覧(部屋数とは別)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qMaIDWYa7PjaukdQb-Qr-27" vertex="1">
           <mxGeometry y="26" width="170" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-27" value="予約枠の作成,編集,削除" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qMaIDWYa7PjaukdQb-Qr-27">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-27" value="予約枠の作成,編集,削除" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qMaIDWYa7PjaukdQb-Qr-27" vertex="1">
           <mxGeometry y="52" width="170" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-44" value="予約が入ると予約済みになる" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="qMaIDWYa7PjaukdQb-Qr-27">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-44" value="予約が入ると予約済みになる" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="qMaIDWYa7PjaukdQb-Qr-27" vertex="1">
           <mxGeometry y="78" width="170" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="qMaIDWYa7PjaukdQb-Qr-29" value="予約キャンセル" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="-180" y="728" width="170" height="104" as="geometry">
-            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="qMaIDWYa7PjaukdQb-Qr-30" value="会員登録" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qMaIDWYa7PjaukdQb-Qr-29" vertex="1">
-          <mxGeometry y="26" width="170" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="qMaIDWYa7PjaukdQb-Qr-31" value="パスワードリセット" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="qMaIDWYa7PjaukdQb-Qr-29" vertex="1">
-          <mxGeometry y="52" width="170" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="qMaIDWYa7PjaukdQb-Qr-32" value="ログイン" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="qMaIDWYa7PjaukdQb-Qr-29" vertex="1">
-          <mxGeometry y="78" width="170" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1.077;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="bl8yfyfB_bJRX0V0p2GD-18" target="bl8yfyfB_bJRX0V0p2GD-13">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1.077;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="bl8yfyfB_bJRX0V0p2GD-18" target="bl8yfyfB_bJRX0V0p2GD-13" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="bl8yfyfB_bJRX0V0p2GD-15" value="お問い合わせ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#D4E1F5;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -190,97 +176,83 @@
         <mxCell id="bl8yfyfB_bJRX0V0p2GD-16" value="お問い合わせ内容をDBに送信する" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="bl8yfyfB_bJRX0V0p2GD-15" vertex="1">
           <mxGeometry y="26" width="180" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-28" value="予約詳細ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-28" value="宿泊プラン編集ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-380" y="568" width="160" height="104" as="geometry">
             <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-29" value="会員登録" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-28">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-29" value="タイトル" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-28" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-30" value="パスワードリセット" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-28">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-30" value="画像（複数枚）" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="-IESsYVYVI_-EmZ2xDrL-28" vertex="1">
           <mxGeometry y="52" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-31" value="ログイン" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-28">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-31" value="説明" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="-IESsYVYVI_-EmZ2xDrL-28" vertex="1">
           <mxGeometry y="78" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="-IESsYVYVI_-EmZ2xDrL-33" target="-IESsYVYVI_-EmZ2xDrL-28">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="-IESsYVYVI_-EmZ2xDrL-33" target="-IESsYVYVI_-EmZ2xDrL-28" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-33" value="宿泊プラン管理ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-33" value="宿泊プラン一覧ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-380" y="388" width="160" height="108" as="geometry">
             <mxRectangle x="340" y="380" width="170" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-34" value="予約枠の作成、編集" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-33">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-34" value="予約枠の作成、編集" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-33" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-35" value="削除" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-33">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-35" value="削除" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-33" vertex="1">
           <mxGeometry y="52" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-61" value="プランは最低1つ必要" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-33">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-61" value="プランは最低1つ必要" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="-IESsYVYVI_-EmZ2xDrL-33" vertex="1">
           <mxGeometry y="78" width="160" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-36" value="予約キャンセル" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-380" y="728" width="160" height="104" as="geometry">
-            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-37" value="会員登録" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-36">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-38" value="パスワードリセット" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-36">
-          <mxGeometry y="52" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-39" value="ログイン" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-36">
-          <mxGeometry y="78" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-46" value="予約詳細ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-46" value="予約詳細ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-580" y="568" width="160" height="104" as="geometry">
             <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-47" value="会員登録" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-46">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-47" value="会員登録" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-46" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-48" value="パスワードリセット" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-46">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-48" value="パスワードリセット" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="-IESsYVYVI_-EmZ2xDrL-46" vertex="1">
           <mxGeometry y="52" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-49" value="ログイン" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-46">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-49" value="ログイン" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="-IESsYVYVI_-EmZ2xDrL-46" vertex="1">
           <mxGeometry y="78" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="-IESsYVYVI_-EmZ2xDrL-51" target="-IESsYVYVI_-EmZ2xDrL-46">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="-IESsYVYVI_-EmZ2xDrL-51" target="-IESsYVYVI_-EmZ2xDrL-46" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-51" value="予約管理ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-51" value="予約管理ページ" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-580" y="388" width="160" height="104" as="geometry">
             <mxRectangle x="340" y="380" width="170" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-52" value="予約一覧" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-51">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-52" value="予約一覧" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-51" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-58" value="予約詳細" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-51">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-58" value="予約詳細" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-51" vertex="1">
           <mxGeometry y="52" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-53" value="予約キャンセル" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-51">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-53" value="予約キャンセル" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-51" vertex="1">
           <mxGeometry y="78" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-54" value="予約キャンセル" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-54" value="予約キャンセル" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-580" y="728" width="160" height="104" as="geometry">
             <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-55" value="会員登録" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-54">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-55" value="会員登録" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-IESsYVYVI_-EmZ2xDrL-54" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-56" value="パスワードリセット" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-54">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-56" value="パスワードリセット" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="-IESsYVYVI_-EmZ2xDrL-54" vertex="1">
           <mxGeometry y="52" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-57" value="ログイン" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="-IESsYVYVI_-EmZ2xDrL-54">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-57" value="ログイン" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="-IESsYVYVI_-EmZ2xDrL-54" vertex="1">
           <mxGeometry y="78" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="-IESsYVYVI_-EmZ2xDrL-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="bl8yfyfB_bJRX0V0p2GD-7" target="qMaIDWYa7PjaukdQb-Qr-16">
+        <mxCell id="-IESsYVYVI_-EmZ2xDrL-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="bl8yfyfB_bJRX0V0p2GD-7" target="qMaIDWYa7PjaukdQb-Qr-16" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
