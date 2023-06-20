@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-19T04:57:44.090Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="1hUhl7WJE4WhhH_FNN0G" version="21.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-20T03:05:54.028Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="jPT5nuf3fb_tkVW_OJiy" version="21.4.0" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1861" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -125,6 +125,11 @@
         </mxCell>
         <mxCell id="qMaIDWYa7PjaukdQb-Qr-17" value="アカウントを作っておく" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qMaIDWYa7PjaukdQb-Qr-16" vertex="1">
           <mxGeometry y="52" width="180" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1iAVuSueuaN5ujlQlFLi-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="qMaIDWYa7PjaukdQb-Qr-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="470" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="qMaIDWYa7PjaukdQb-Qr-20" value="お問い合わせ一覧" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#FFB570;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="20" y="388" width="160" height="52" as="geometry">
