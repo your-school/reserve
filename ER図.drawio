@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-12T13:31:17.769Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="-LojBo7NiPwN71xTMJdK" version="21.6.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-12T13:31:36.033Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="4ov2dF3otgKCFZzV9boT" version="21.6.6" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1554" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -576,7 +576,7 @@
         </mxCell>
         <mxCell id="reZBCmwhrlpFtiqjved8-2" value="紐付けで宿泊プランが登録されていることを確認できる" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="uPQFOtAX56aPG2OBGJ0J-15">
           <mxGeometry x="0.3122" y="3" relative="1" as="geometry">
-            <mxPoint x="-123" y="24" as="offset" />
+            <mxPoint x="-153" y="-146" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
