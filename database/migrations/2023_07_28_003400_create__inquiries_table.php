@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->integer('inquiry_category');
+            $table->string('inquiry_category');
             $table->text('content');
             $table->integer('status')->default(0);
             $table->timestamps();

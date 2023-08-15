@@ -62,7 +62,7 @@
                     </a>
                 @show
 
-                @section('onsens-link')
+                @section('guide-link')
                     <a href="{{ url('/access_guide') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                         @mouseleave="hover = false"
                         class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
@@ -79,91 +79,40 @@
                     </a>
                 @show
 
-                @section('reviews-link')
-                    <a href="{{ url('/') }}" x-data="{ hover: false }" @mouseenter="hover = true"
-                        @mouseleave="hover = false"
-                        class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
-                        <span class="block">レビュー一覧</span>
-                        <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
-                            <span x-show="hover"
-                                class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
-                                x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-                                x-transition:leave="transition ease-out duration-300"
-                                x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-                                data-primary="red-600" style="display: none;"></span>
-                        </span>
-                    </a>
-                @show
-
-                @auth
-
-                    @section('review-create-link')
-                        <a href="{{ url('/') }}" x-data="{ hover: false }" @mouseenter="hover = true"
-                            @mouseleave="hover = false"
-                            class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
-                            <span class="block">レビューの投稿</span>
-                            <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
-                                <span x-show="hover"
-                                    class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
-                                    x-transition:enter="transition ease-out duration-300"
-                                    x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-                                    x-transition:leave="transition ease-out duration-300"
-                                    x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-                                    data-primary="red-600" style="display: none;"></span>
-                            </span>
-                        </a>
-                    @show
-
-                    @section('mypage-link')
-                        <a href="{{ url('/') }}" x-data="{ hover: false }" @mouseenter="hover = true"
-                            @mouseleave="hover = false"
-                            class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
-                            <span class="block"><svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" viewBox="0 0 24 24">
-                                    <circle fill="none" cx="12" cy="7" r="3"></circle>
-                                    <path
-                                        d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z">
-                                    </path>
-                                </svg></span>
-                            <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
-                                <span x-show="hover"
-                                    class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
-                                    x-transition:enter="transition ease-out duration-300"
-                                    x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-                                    x-transition:leave="transition ease-out duration-300"
-                                    x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-                                    data-primary="red-600" style="display: none;"></span>
-                            </span>
-                        </a>
-                    @show
-
-                    @section('profile-link')
-                        <a href="{{ route('profile.edit') }}" x-data="{ hover: false }" @mouseenter="hover = true"
-                            @mouseleave="hover = false"
-                            class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
-                            <span class="block"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" class="h-6 w-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg></span>
-                            <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
-                                <span x-show="hover"
-                                    class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
-                                    x-transition:enter="transition ease-out duration-300"
-                                    x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-                                    x-transition:leave="transition ease-out duration-300"
-                                    x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-                                    data-primary="red-600" style="display: none;"></span>
-                            </span>
-                        </a>
-                    @show
-
-                @endauth
+                <a href="{{ route('plan.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                    @mouseleave="hover = false"
+                    class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
+                    <span class="block">宿泊プラン一覧</span>
+                    <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
+                        <span x-show="hover"
+                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+                            x-transition:leave="transition ease-out duration-300"
+                            x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+                            data-primary="red-600" style="display: none;"></span>
+                    </span>
+                </a>
 
                 @guest
+
+                    @section('inquiry-link')
+                        <a href="{{ url('/inquiry') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                            @mouseleave="hover = false"
+                            class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
+                            <span class="block">お問合せフォーム</span>
+                            <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
+                                <span x-show="hover"
+                                    class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                                    x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+                                    x-transition:leave="transition ease-out duration-300"
+                                    x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+                                    data-primary="red-600" style="display: none;"></span>
+                            </span>
+                        </a>
+                    @show
+
                     <a href="{{ route('login') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                         @mouseleave="hover = false"
                         class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
@@ -178,33 +127,6 @@
                                 data-primary="red-600" style="display: none;"></span>
                         </span>
                     </a>
-
-                    @section('register-link')
-
-                        <a href="{{ route('register') }}"
-                            class="relative inline-flex items-center justify-start px-4 py-3 overflow-hidden font-medium transition-all bg-red-500 rounded-xl group">
-                            <span
-                                class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-red-700 rounded group-hover:-mr-4 group-hover:-mt-4">
-                                <span
-                                    class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
-                            </span>
-                            <span
-                                class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-red-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
-                            <span
-                                class="relative inline-flex items-center w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white"><svg
-                                    class="w-6 h-6 mr-1" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>会員登録</span>
-                        </a>
-                    @show
-
                 @endguest
 
                 @auth

@@ -29,8 +29,8 @@
                         </svg>
                         <input
                             class="w-full pl-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0"
-                            type="email" id="email" name="email" value="{{ old('email') }}" required
-                            autocomplete="email" required aria-describedby="email-error" placeholder="メールアドレス" />
+                            type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="email"
+                            required aria-describedby="email-error" placeholder="メールアドレス" />
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

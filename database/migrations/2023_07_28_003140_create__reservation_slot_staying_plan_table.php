@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('reservation_slot_staying_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reservation_slot_id')->constrained()->onDelete('cascade');
+            $table->foreignId('reservation_slot_id')->constrained();
             $table->foreignId('staying_plan_id')->constrained()->onDelete('cascade');
+            $table->integer('price');
             $table->timestamps();
         });
     }
