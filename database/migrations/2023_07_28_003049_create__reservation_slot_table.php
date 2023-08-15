@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('reservation_slots', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('reservation_id')->nullable();
-            $table->unsignedBigInteger('staying_plan_id')->nullable();
-            // $table->foreignId('reservation_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('set null');
-            // $table->foreignId('staying_plan_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('room_master_id')->constrained();
             $table->date('day');
             $table->boolean('cancel')->nullable();

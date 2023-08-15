@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('staying_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plan_images_id')->constrained();
             $table->string('title');
-            $table->integer('price');
             $table->text('explain');
-
             $table->timestamps();
         });
     }

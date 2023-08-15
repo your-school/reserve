@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('room_type');
             $table->integer('capacity');
-            // $table->string('image');
-            // $table->text('explain');
-            // $table->text('facility');
+            $table->string('image')->nullable();
+            $table->text('explain');
+            $table->text('facility');
             $table->timestamps();
         });
     }
