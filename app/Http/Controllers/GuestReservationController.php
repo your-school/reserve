@@ -35,13 +35,11 @@ class GuestReservationController extends Controller
      */
     public function store(GuestReservationRequest $request)
     {
-        $reservation_slot_staying_plan = ReservationSlotStayingPlan::find($request->reservation_slot_staying_plan_id);
 
         $startDay = $request->start_day;
         $endDay = Carbon::parse($startDay)->addDay()->toDateString();       
 
-        Reservation::create([
-            'reservation_slot_staying_plan_id' => $reservation_slot_staying_plan['id'],
+        $reservation = Reservation::create([
             'first_name' =>  $request->first_name,
             'last_name' =>  $request->last_name,
             'number_of_people' =>  $request->number_of_people,
@@ -54,8 +52,12 @@ class GuestReservationController extends Controller
             'end_day' => $endDay,
         ]);
 
+        $reservation_slot_staying_plan = ReservationSlotStayingPlan::find($request->reservation_slot_staying_plan_id);
+
         $reservationSlot=$reservation_slot_staying_plan->stayingPlan->first();
         $reservationSlot->id = $reservationSlot['id'];
+
+        $reservation_slot_staying_plan->reservation_id=$reservation->id;
 
         return redirect()->route('home')->with('success', '予約を完了しました');
     }
