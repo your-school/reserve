@@ -3,22 +3,6 @@
 @section('content')
     <main>
 
-        @if (session('success'))
-            <div class="flex container mx-auto w-full flex-col text-center my-10">
-                <div class="mt-10 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
-                    <p class="font-bold">{{ session('success') }}</p>
-                </div>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="flex container mx-auto w-full flex-col text-center my-10">
-                <div class="mt-10 bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3" role="alert">
-                    <p class="font-bold">{{ session('error') }}</p>
-                </div>
-            </div>
-        @endif
-
         @php
             $roomTypes = [
                 '1' => 'シングルルーム',
@@ -32,22 +16,6 @@
         <div class="max-w-6xl px-5 py-5 md:py-10 mx-auto md:px-10 tails-selected-element">
 
             <section class="mx-1.5 md:mx-7 mb-5">
-                {{-- <div class="flex flex-wrap md:flex-nowrap">
-                    <div class="w-full overflow-hidden md:w-4/6">
-                        <div class="pt-4 pb-2.5 px-0.5">
-                            <div class="pt-2"><span class="font-bold text-2xl">テスト</span>
-                            </div>
-                            <div class="mt-1.5"><span class="text-red-500 text-2xl">テスト</span><span class="ml-1">テスト
-                                </span></div>
-                        </div>
-                        <div class="text-xs my-0.5"><span class="font-bold">都道府県 :</span><span class="ml-1.5">テスト<span
-                                    class="ml-4 font-bold">最寄り駅 :</span><span class="ml-1.5">テスト</div>
-                        <div class="text-xs my-1"><span class="font-bold">定休日 :</span><span class="ml-1.5">テスト/span>
-                                <div class="md:p-3"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
                 <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 mb-16 md:mt-0">宿泊プラン詳細</div>
             </section>
 
@@ -124,7 +92,27 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="my-2 mx-1.5">
+                        @foreach ($stayingPlan->reservationSlots->pluck('day')->unique()->sort()->values() as $day)
+                            <div class="mt-2 p-4 border border-gray-300 rounded">
+                                <div class="truncate overflow-hidden text-gray-600 text-sm">
+                                    {{ $day }}<span
+                                        class="text-gray-400 inline-flex items-center inline text-sm ml-4">
+                                        <form action="{{ route('reservation.create') }}" method="get">
+                                            <button type="submit"
+                                                class="text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">予約する</button>
+                                        </form>
+                                </div>
+
+                                {{-- <h2 class="text-red-500 tracking-widest text-sm mt-2.5">
+                                テスト <span class="text-gray-400 inline-flex items-center inline text-sm ml-4">
+                                    更新日:テスト</span></h2> --}}
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
+
             </section>
         </div>
     </main>

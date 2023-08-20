@@ -7,22 +7,6 @@
 @section('content')
     <main>
 
-        @if (session('success'))
-            <div class="flex container mx-auto w-full flex-col text-center my-10">
-                <div class="mt-10 bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3" role="alert">
-                    <p class="font-bold">{{ session('success') }}</p>
-                </div>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="flex container mx-auto w-full flex-col text-center my-10">
-                <div class="mt-10 bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3" role="alert">
-                    <p class="font-bold">{{ session('error') }}</p>
-                </div>
-            </div>
-        @endif
-
 
         <main class="max-w-6xl px-5 py-5 md:py-10 mx-auto md:px-10 tails-selected-element">
 

@@ -8,6 +8,8 @@ use App\Http\Controllers\ReservationSlotController;
 use App\Http\Controllers\StayingPlanController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\GuestPlanListController;
+use App\Http\Controllers\GuestReservationController;
+
 
 use App\Models\Reservation;
 use App\Models\ReservationSlot;
@@ -65,8 +67,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/inquiry/store', [InquiryController::class, 'store'])
         ->name('inquiry.store');
 
+    Route::get('/plan/search', [GuestPlanListController::class, 'search'])->name('plan.search');
     Route::resource('plan', GuestPlanListController::class);
-    
+    Route::get('reservation/create/{id}', [GuestReservationController::class, 'create'])->name('reservation.create');
+    Route::resource('reservation', GuestReservationController::class)->except('create');
+        
 });
 
 

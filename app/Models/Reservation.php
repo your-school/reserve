@@ -9,6 +9,23 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'reservation_slot_staying_plan_id',
+        'first_name',
+        'last_name',
+        'number_of_people',
+        'email',
+        'phone_number',
+        'post_code',
+        'address',
+        'message',
+        'start_day',
+        'end_day',
+        'total_price',
+        'admin_memo'
+    ];
+
+
     public function reservationSlots()
     {
         return $this->hasMany(ReservationSlot::class);

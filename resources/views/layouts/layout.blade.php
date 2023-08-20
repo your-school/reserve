@@ -23,6 +23,19 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <link href='{{ asset('fullcalendar-6.1.8/lib/main.css') }}' rel='stylesheet' />
+    <script src='{{ asset('fullcalendar-6.1.8/lib/main.js') }}'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+    </script>
+
 
     {{-- <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png"> --}}
 </head>
@@ -160,6 +173,23 @@
 
         </div>
     </header>
+
+    @if (session('success'))
+        <div class="flex container mx-auto w-full flex-col text-center mt-20">
+            <div class="mt-10 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3"
+                role="alert">
+                <p class="font-bold">{{ session('success') }}</p>
+            </div>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="flex container mx-auto w-full flex-col text-center my-20">
+            <div class="mt-10 bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3" role="alert">
+                <p class="font-bold">{{ session('error') }}</p>
+            </div>
+        </div>
+    @endif
 
     @section('remove-in-register-link')
         <div class="mt-24"></div>

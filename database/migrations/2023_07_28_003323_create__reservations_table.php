@@ -25,6 +25,8 @@ return new class extends Migration
             $table->date('start_day');
             $table->date('end_day');
             $table->integer('reservation_status')->nullable();
+            $table->text('admin_memo')->nullable();
+            $table->integer('total_price')->nullable();
             $table->timestamps();
         });
     }

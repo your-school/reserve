@@ -21,4 +21,9 @@ class ReservationSlotStayingPlan extends Model
     {
         return $this->belongsTo(StayingPlan::class);
     }
+
+    public function reservationSlot()
+    {
+        return $this->belongsTo(ReservationSlot::class);
+    }
 }
