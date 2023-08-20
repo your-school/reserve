@@ -3,21 +3,6 @@
 @section('content')
     <main>
 
-        @if (session('success'))
-            <div class="flex container mx-auto w-full flex-col text-center my-10">
-                <div class="mt-10 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
-                    <p class="font-bold">{{ session('success') }}</p>
-                </div>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="flex container mx-auto w-full flex-col text-center my-10">
-                <div class="mt-10 bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3" role="alert">
-                    <p class="font-bold">{{ session('error') }}</p>
-                </div>
-            </div>
-        @endif
 
         @php
             $roomTypes = [
@@ -32,23 +17,37 @@
         <main class="max-w-6xl px-5 py-5 md:py-10 mx-auto md:px-10 tails-selected-element">
 
             <section class="mx-1.5 md:mx-7 mb-5">
-                {{-- <div class="flex flex-wrap md:flex-nowrap">
-                    <div class="w-full overflow-hidden md:w-4/6">
-                        <div class="pt-4 pb-2.5 px-0.5">
-                            <div class="pt-2"><span class="font-bold text-2xl">テスト</span>
-                            </div>
-                            <div class="mt-1.5"><span class="text-red-500 text-2xl">テスト</span><span class="ml-1">テスト
-                                </span></div>
-                        </div>
-                        <div class="text-xs my-0.5"><span class="font-bold">都道府県 :</span><span class="ml-1.5">テスト<span
-                                    class="ml-4 font-bold">最寄り駅 :</span><span class="ml-1.5">テスト</div>
-                        <div class="text-xs my-1"><span class="font-bold">定休日 :</span><span class="ml-1.5">テスト/span>
-                                <div class="md:p-3"></div>
-                        </div>
-                    </div>
-                </div> --}}
 
-                <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 mb-16 md:mt-0">宿泊プラン一覧</div>
+                <div class="w-full mb-12">
+                    <div class="p-3 border border-gray-300 rounded my-5  bg-gray-100">
+                        <div class="flex items-center pb-2 border-b border-gray-300 mb-5">
+                            {{-- <img src="{{ asset('svg/human_icon.svg') }}" alt="customIcon" class="ml-0.5 w-4 h-4"> --}}
+                            <span class="ml-2 text-gray-900 text-lg font-bold">詳細検索</span>
+                        </div>
+                        <form action="{{ route('plan.search') }}" method="GET">
+                            <div class="container mx-auto my-8">
+                                <h1 class="text-lg font-bold mb-2 ml-2">日付</h1>
+                                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                                    <div class="flex flex-col">
+                                        <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md">
+                                    </div>
+                                    <div class="flex flex-col p-2">〜
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center my-8">
+                                <button type="submit"
+                                    class="text-white bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-lg px-10 py-3 text-center">検索</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="py-4 px-5 text-2xl font-bold bg-red-100 mb-16 md:mt-0">宿泊プラン一覧</div>
 
                 <div class="flex">
                     <button id="planButton"
@@ -85,7 +84,6 @@
                                                     {{ $plan->explain }}</div>
                                             </div>
                                         </div>
-
                                         <div class="p-3 w-1/2">
                                             <div class="pt-1">
                                                 <h2 class="pl-2 font-bold">住所</h2>
@@ -122,7 +120,6 @@
                                     <div class="p-3">
                                         <h2 class="pl-2 my-3 font-bold">お部屋を選択</h2>
                                         <div class="flex flex-wrap md:flex-nowrap border-y border-gray-300">
-
                                             <div class="text-sm bg-white p-3">
                                                 部屋：
                                                 <a href="{{ url('/') }}" class="underline"
@@ -136,6 +133,11 @@
                                                         class="text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">詳細</button>
                                                 </form>
                                             </div>
+                                            <button type="button" onclick="openModal({{ $plan->id }})"
+                                                class="text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">
+                                                詳細
+                                            </button>
+
                                         </div>
                                         <div class="pt-2 mb-3">
                                             <div class="text-sm bg-white p-3 border-b border-gray-300 underline overflow-hidden"
@@ -145,42 +147,45 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <div class="my-2">
-                                    <div class="flex items-center">
-                                        <img src="{{ asset('svg/human_icon.svg') }}" alt="customIcon"
-                                            class="ml-1.5 w-4 h-4">
-                                        <span class="ml-2 text-gray-700 text-sm">テスト</span>
-                                    </div>
-                                    <div class="mt-2 p-4 border border-gray-300 rounded">
-                                        <div class="truncate overflow-hidden text-gray-600 text-sm">
-                                            テスト</div>
-                                        <a href="{{ url('/') }}"
-                                            class="text-gray-500 inline-flex items-center inline text-sm underline">
-                                            <span class="">続きを読む</span>
-                                            <svg class="w-3 h-3 ml-1 transform -rotate-45" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </a>
-                                        <h2 class="text-red-500 tracking-widest text-sm mt-2.5">
-                                            テスト <span class="text-gray-400 inline-flex items-center inline text-sm ml-4">
-                                                更新日:テスト</span></h2>
-                                    </div>
-                                </div> --}}
-
                             </div>
-                    </div>
-                    @endforeach
+                            <script>
+                                var allReservationDates = {};
 
+                                @foreach ($stayingPlans as $plan)
+                                    var countByDate = @json($plan->reservationSlots->groupBy('day')->map->count());
+                                    console.log(countByDate);
+                                    var idsByDate = @json($plan->reservationSlotStayingPlans->groupBy('reservationSlot.day')->map->first()->pluck('id'));
+                                    console.log(idsByDate);
+
+
+                                    allReservationDates[{{ $plan->id }}] = Object.keys(countByDate).map(function(date, index) {
+                                        var titleText = countByDate[date] > 2 ? '◯' : '残り：' + countByDate[date] + '部屋';
+                                        var eventId = idsByDate[index]; // 同じインデックスのidsByDateの値を取得
+
+                                        return {
+                                            title: titleText,
+                                            start: date,
+                                            id: eventId, // idsByDateからIDを取得
+                                        };
+                                    });
+                                @endforeach
+                            </script>
+                        @endforeach
+
+                        <!-- Modal Start -->
+                        <div id="calendarModal"
+                            class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-60 flex justify-center items-center hidden">
+                            <div class="bg-white p-5 rounded shadow-lg w-3/4 h-3/4">
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
 
                 <div id="roomSection" class="w-full md:px-5" style="display:none;">
                     <div class="md:ml-2 md:mr-4 md:pb-5">
-
-
                         <div class="p-3 border border-gray-300 rounded my-5">
                             <div class="flex items-center pb-2 border-b border-gray-300">
                                 <img src="{{ asset('svg/human_icon.svg') }}" alt="customIcon" class="ml-0.5 w-4 h-4">
@@ -203,9 +208,6 @@
                                 <img class="object-cover object-center w-full h-full" src="" alt="onsenImage">
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
 
@@ -235,6 +237,77 @@
 
 
 
+
+        <script>
+            function openModal(planId) {
+                document.getElementById('calendarModal').style.display = 'flex';
+
+                function handleDateSelection(targetDate) {
+                    var selectedEvent = allReservationDates[planId].find(function(event) {
+                        return event.start === targetDate;
+                    });
+
+                    if (selectedEvent) {
+                        var selectedReservationSlotId = selectedEvent.id;
+                        var url = "{{ url('reservation/create') }}/" + selectedReservationSlotId;
+                        var userConfirmed = confirm("選択した日付での予約を開始しますか？");
+
+                        if (userConfirmed) {
+                            window.location.href = url;
+                        }
+                    }
+                }
+
+
+                var calendarEl = document.getElementById('calendar');
+                var calendarEvents = allReservationDates[planId];
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'ja',
+                    timeZone: 'Asia/Tokyo',
+                    height: 'auto',
+                    firstDay: 0,
+                    headerToolbar: {
+                        left: "dayGridMonth",
+                        center: "title",
+                        right: "today prev,next closeButton"
+                    },
+                    buttonText: {
+                        today: '今月',
+                        month: '月',
+                        list: 'リスト'
+                    },
+                    customButtons: {
+                        closeButton: {
+                            text: '閉じる',
+                            click: function() {
+                                closeModal();
+                            }
+                        }
+                    },
+                    events: calendarEvents,
+                    selectable: true,
+                    select: function(info) {
+                        var targetDate = info.startStr;
+                        handleDateSelection(targetDate);
+                    },
+                    eventClick: function(info) {
+                        var targetDate = info.event.startStr;
+                        handleDateSelection(targetDate);
+                    },
+
+
+                });
+
+                calendar.render();
+
+                // TODO: planIdに基づいて、カレンダーにデータをロードする処理を追加
+            }
+
+            function closeModal() {
+                document.getElementById('calendarModal').style.display = 'none';
+            }
+        </script>
 
         <script>
             window.onload = function() {

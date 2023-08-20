@@ -40,6 +40,7 @@ class GuestPlanListController extends Controller
     public function show(string $id)
     {
         $stayingPlan = StayingPlan::find($id);
+        
         return view('guest.plan-detail', compact('stayingPlan'));
     }
 
@@ -66,4 +67,18 @@ class GuestPlanListController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $startDate = $request->input('start_day');
+        $endDate = $request->input('end_day');
+
+        $stayingPlans = StayingPlan::whereHas('reservationSlots', function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('day', [$startDate, $endDate]);
+        })->get();
+
+        // ここで、$stayingPlans をビューに渡して表示します
+        return view('guest.plan-list', compact('stayingPlans'));
+    }
+
 }
