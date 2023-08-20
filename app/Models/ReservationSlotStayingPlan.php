@@ -14,6 +14,7 @@ class ReservationSlotStayingPlan extends Model
     protected $fillable = [
         'staying_plan_id',
         'reservation_slot_id',
+        'reservation_id',
         'price',
     ];
 
@@ -25,5 +26,10 @@ class ReservationSlotStayingPlan extends Model
     public function reservationSlot()
     {
         return $this->belongsTo(ReservationSlot::class);
+    }
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
     }
 }

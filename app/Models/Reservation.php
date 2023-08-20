@@ -30,4 +30,9 @@ class Reservation extends Model
     {
         return $this->hasMany(ReservationSlot::class);
     }
+
+    public function reservationSlotStayingPlans()
+    {
+        return $this->HasMany(ReservationSlotStayingPlan::class, 'staying_plan_id');
+    }
 }

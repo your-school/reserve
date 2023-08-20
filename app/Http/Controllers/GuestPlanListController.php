@@ -13,9 +13,12 @@ class GuestPlanListController extends Controller
      */
     public function index()
     {
-        $stayingPlans = StayingPlan::with(['reservationSlots'])->get();
+        // reservation_idがNULLのreservationSlotStayingPlansを持つStayingPlanだけ取得
+        $stayingPlans = StayingPlan::whereHas('reservationSlotStayingPlans', function ($query) {
+            $query->whereNull('reservation_id');
+        })->get();
+                
         return view('guest.plan-list', compact('stayingPlans'));
-        
     }
 
     /**

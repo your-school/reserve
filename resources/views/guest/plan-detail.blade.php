@@ -115,5 +115,81 @@
 
             </section>
         </div>
+        <script>
+            var allReservationDates = {};
+
+            @foreach ($stayingPlans as $plan)
+                var countByDate = @json($plan->reservationSlots->groupBy('day')->map->count());
+                console.log(countByDate);
+                var idsByDate = @json($plan->reservationSlotStayingPlans->groupBy('reservationSlot.day')->map->first()->pluck('id'));
+                console.log(idsByDate);
+
+                allReservationDates[{{ $plan->id }}] = Object.keys(countByDate).map(function(date, index) {
+                    var titleText = countByDate[date] > 2 ? '◯' : '残り：' + countByDate[date] + '部屋';
+                    var eventId = idsByDate[index]; // 同じインデックスのidsByDateの値を取得
+
+                    return {
+                        title: titleText,
+                        start: date,
+                        id: eventId, // idsByDateからIDを取得
+                    };
+                });
+
+                function handleDateSelection(targetDate) {
+                    var selectedEvent = allReservationDates[planId].find(function(event) {
+                        return event.start === targetDate;
+                    });
+
+                    if (selectedEvent) {
+                        var selectedReservationSlotId = selectedEvent.id;
+                        var url = "{{ url('reservation/create') }}/" + selectedReservationSlotId;
+                        var userConfirmed = confirm("選択した日付での予約を開始しますか？");
+
+                        if (userConfirmed) {
+                            window.location.href = url;
+                        }
+                    }
+                }
+
+                var calendarEl = document.getElementById('calendar');
+                var calendarEvents = allReservationDates[planId];
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'ja',
+                    timeZone: 'Asia/Tokyo',
+                    height: 'auto',
+                    firstDay: 0,
+                    headerToolbar: {
+                        left: "dayGridMonth",
+                        center: "title",
+                        right: "today prev,next closeButton"
+                    },
+                    buttonText: {
+                        today: '今月',
+                        month: '月',
+                        list: 'リスト'
+                    },
+                    customButtons: {
+                        closeButton: {
+                            text: '閉じる',
+                            click: function() {
+                                closeModal();
+                            }
+                        }
+                    },
+                    events: calendarEvents,
+                    selectable: true,
+                    select: function(info) {
+                        var targetDate = info.startStr;
+                        handleDateSelection(targetDate);
+                    },
+                    eventClick: function(info) {
+                        var targetDate = info.event.startStr;
+                        handleDateSelection(targetDate);
+                    },
+                });
+
+                calendar.render();
+        </script>
     </main>
 @endsection
