@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-09-01T13:07:23.416Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="Duy7RwUqukXJZSZkcjxD" version="21.7.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-09-01T13:07:43.224Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="G5BxzK1ihawvoeS3qgeB" version="21.7.1" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
-    <mxGraphModel dx="2524" dy="1890" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+    <mxGraphModel dx="1674" dy="1890" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -544,9 +544,6 @@
         <mxCell id="nkFYvrB3Nfpvy7fEfLyU-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="uPQFOtAX56aPG2OBGJ0J-12" target="nkFYvrB3Nfpvy7fEfLyU-8" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="reZBCmwhrlpFtiqjved8-3" value="予約枠宿泊プランテーブルの存在を確認して、宿泊プランが存在しているか判断する" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="-70" y="250" width="480" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="reZBCmwhrlpFtiqjved8-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nkFYvrB3Nfpvy7fEfLyU-34" target="nkFYvrB3Nfpvy7fEfLyU-54" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -559,9 +556,6 @@
               <mxPoint x="400" y="125" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="duWjMnijmBsmm2A-lt3h-17" value="両方いれておいた方がすっきりする？" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="480" y="350" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="RzWuvaZrJXU_ZFxcbraV-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="RzWuvaZrJXU_ZFxcbraV-10" target="_ixfMY5MAVE4iLFDtZC8-141">
           <mxGeometry relative="1" as="geometry">
