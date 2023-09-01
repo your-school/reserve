@@ -22,17 +22,12 @@ class Reservation extends Model
         'start_day',
         'end_day',
         'total_price',
-        'admin_memo'
+        'admin_memo',
+        'cancel',
     ];
-
-
-    public function reservationSlots()
-    {
-        return $this->hasMany(ReservationSlot::class);
-    }
 
     public function reservationSlotStayingPlans()
     {
-        return $this->HasMany(ReservationSlotStayingPlan::class, 'staying_plan_id');
+        return $this->belongsTo(ReservationSlotStayingPlan::class);
     }
 }

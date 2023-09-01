@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('explain');
             $table->text('facility');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

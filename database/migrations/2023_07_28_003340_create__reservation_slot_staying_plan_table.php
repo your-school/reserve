@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('reservation_slot_id')->constrained();
             $table->foreignId('staying_plan_id')->constrained()->onDelete('cascade');
-            $table->foreignId('reservation_id')->nullable()->constrained();
             $table->integer('price');
             $table->timestamps();
         });

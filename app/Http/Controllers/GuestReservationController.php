@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\StayingPlan;
 use App\Models\Reservation;
 use App\Models\ReservationSlotStayingPlan;
+use App\Models\ReservationSlot;
 use App\Http\Requests\GuestReservationRequest;
+use App\Services\ReservationService;
 use Carbon\Carbon;
 
 
@@ -35,29 +37,21 @@ class GuestReservationController extends Controller
      */
     public function store(GuestReservationRequest $request)
     {
+        // $startDay = $request->start_day;
+        // $endDay = Carbon::parse($startDay)->addDay()->toDateString();       
 
-        $startDay = $request->start_day;
-        $endDay = Carbon::parse($startDay)->addDay()->toDateString();       
-
-        $reservation = Reservation::create([
-            'first_name' =>  $request->first_name,
-            'last_name' =>  $request->last_name,
-            'number_of_people' =>  $request->number_of_people,
-            'email' =>  $request->email,
-            'phone_number' =>  $request->phone_number,
-            'post_code' =>  $request->post_code,
-            'address' =>  $request->address,
-            'message' =>  $request->message,
-            'start_day' => $startDay,
-            'end_day' => $endDay,
-        ]);
+        $reservation = ReservationService::storeReservation($request);
 
         $reservation_slot_staying_plan = ReservationSlotStayingPlan::find($request->reservation_slot_staying_plan_id);
+        $reservation_slot_staying_plan->reservation_id = $reservation['id'];
+        $reservation_slot_staying_plan->save();
 
-        $reservationSlot=$reservation_slot_staying_plan->stayingPlan->first();
-        $reservationSlot->id = $reservationSlot['id'];
+        $reservationSlot=$reservation_slot_staying_plan->reservationSlot->first();
+        $reservationSlot->reservation_id = $reservation['id'];
+        // dd($reservationSlot);
+        $reservationSlot->save();
 
-        $reservation_slot_staying_plan->reservation_id=$reservation->id;
+        // $reservation_slot_staying_plan->reservation_id=$reservation->id;
 
         return redirect()->route('home')->with('success', '予約を完了しました');
     }

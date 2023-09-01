@@ -11,7 +11,7 @@ class StayingPlan extends Model
 
     protected $fillable = [
         'title',
-        'price',
+        'image',
         'explain',
     ];
     

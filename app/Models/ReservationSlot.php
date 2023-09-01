@@ -10,20 +10,14 @@ class ReservationSlot extends Model
     use HasFactory;
 
     protected $fillable = [
-        'reservation_id',
         'room_master_id',
         'day',
-        'cancel',
+        'stock',
     ];
 
     public function roomMaster()
     {
         return $this->belongsTo(RoomMaster::class);
-    }
-
-    public function reservation()
-    {
-        return $this->belongsTo(Reservation::class);
     }
 
     public function stayingPlans()

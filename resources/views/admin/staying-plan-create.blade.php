@@ -3,7 +3,6 @@
 
 
 @section('content')
-    @if (session('success'))
 
         <main>
             <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl">
@@ -108,4 +107,5 @@
             </section>
 
         </main>
+
     @endsection

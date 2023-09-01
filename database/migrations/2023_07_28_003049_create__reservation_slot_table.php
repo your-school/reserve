@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('reservation_slots', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reservation_id')->nullable();
             $table->foreignId('room_master_id')->constrained();
             $table->date('day');
-            $table->boolean('cancel')->nullable();
+            $table->integer('stock');
             $table->timestamps();
         });
     }

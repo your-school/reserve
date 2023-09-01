@@ -121,7 +121,7 @@
             @foreach ($stayingPlans as $plan)
                 var countByDate = @json($plan->reservationSlots->groupBy('day')->map->count());
                 console.log(countByDate);
-                var idsByDate = @json($plan->reservationSlotStayingPlans->groupBy('reservationSlot.day')->map->first()->pluck('id'));
+                var idsByDate = @json($plan->reservationSlotStayingPlans->whereNull('reservation_id')->groupBy('reservationSlot.day')->map->first()->pluck('id'));
                 console.log(idsByDate);
 
                 allReservationDates[{{ $plan->id }}] = Object.keys(countByDate).map(function(date, index) {

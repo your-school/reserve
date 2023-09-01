@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('reservation_slot_staying_plan_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('number_of_people');
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->integer('reservation_status')->nullable();
             $table->text('admin_memo')->nullable();
             $table->integer('total_price')->nullable();
+            $table->boolean('cancel')->default(false);
             $table->timestamps();
         });
     }
