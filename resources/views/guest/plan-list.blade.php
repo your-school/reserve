@@ -4,14 +4,6 @@
     <main>
 
 
-        @php
-            $roomTypes = [
-                '1' => 'シングルルーム',
-                '2' => 'ツインルーム',
-                '3' => 'デラックスルーム',
-                '4' => 'キングルーム',
-            ];
-        @endphp
 
 
         <main class="max-w-6xl px-5 py-5 md:py-10 mx-auto md:px-10 tails-selected-element">
@@ -71,17 +63,17 @@
                 <div id="planSection" class="w-full overflow-hidden w-full md:px-5">
                     <div class="mx-1.5">
 
-                        @foreach ($stayingPlans as $plan)
+                        @foreach ($stayingPlans as $stayingPlan)
                             <div class="my-10">
                                 <div class="my-5 border rounded">
                                     <div class="mx-1 my-1.5 p-2 bg-red-500 rounded font-bold text-white text-2xl">
-                                        {{ $plan->title }}</div>
+                                        {{ $stayingPlan->title }}</div>
                                     <div class="flex flex-wrap md:flex-nowrap">
                                         <div class="p-3 w-1/2">
                                             <div class="pt-1">
                                                 <h2 class="pl-2 font-bold">プラン説明</h2>
                                                 <div class="text-sm bg-white w-4/5 p-2.5">
-                                                    {{ $plan->explain }}</div>
+                                                    {{ $stayingPlan->explain }}</div>
                                             </div>
                                         </div>
                                         <div class="p-3 w-1/2">
@@ -106,8 +98,8 @@
                                                 class="text-sm font-bold bg-red-100 w-1/3 p-2.5 border-r border-b border-gray-300">
                                                 期間</div>
                                             <div class="text-sm bg-white w-2/3 p-2.5 border-b border-gray-300">
-                                                {{ $plan->reservationSlots->min('day') }} 〜
-                                                {{ $plan->reservationSlots->max('day') }}</div>
+                                                {{ $stayingPlan->reservationSlots->min('day') }} 〜
+                                                {{ $stayingPlan->reservationSlots->max('day') }}</div>
                                         </div>
                                         <div class="flex">
                                             <div class="text-sm font-bold bg-red-100 w-1/3 p-2.5 border-r border-gray-300">
@@ -119,31 +111,37 @@
 
                                     <div class="p-3">
                                         <h2 class="pl-2 my-3 font-bold">お部屋を選択</h2>
-                                        <div class="flex flex-wrap md:flex-nowrap border-y border-gray-300">
-                                            <div class="text-sm bg-white p-3">
-                                                部屋：
-                                                <a href="{{ url('/') }}" class="underline"
-                                                    target="_blank">{{ $roomTypes[$plan->reservationSlots->first()->roomMaster->room_type] }}</a>
-                                            </div>
-                                            <div class="text-sm bg-white p-3">一人あたりの料金：￥
-                                                {{ $plan->reservationSlotStayingPlans->first()->price }}</div>
-                                            <div class="text-sm bg-white py-3">
-                                                <form action="{{ route('plan.show', $plan->id) }}" method="get">
-                                                    <button type="submit"
-                                                        class="text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">詳細</button>
-                                                </form>
-                                            </div>
-                                            <button type="button" onclick="openModal({{ $plan->id }})"
-                                                class="text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">
-                                                詳細
-                                            </button>
+                                        @foreach ($stayingPlan->groupedSlots as $key => $plan)
+                                            <div class="flex flex-wrap md:flex-nowrap border-y border-gray-300">
+                                                <div class="text-sm bg-white p-3">
+                                                    部屋：<span class="font-bold">
+                                                        <a href="{{ url('/') }}" class="underline"
+                                                            target="_blank">{{ $plan['slots']->first()->roomMaster->room_type }}</span></a>
+                                                </div>
+                                                <div class="text-sm bg-white p-3">一人あたりの料金：<span class="font-bold">￥
+                                                        {{ $plan['price'] }}</span></div>
+                                                <div class="text-sm bg-white p-3">最大人数：
+                                                    {{ $plan['slots']->first()->roomMaster->capacity }}人</div>
+                                                <div class="text-sm bg-white py-3">
+                                                    <form action="{{ route('plan.show', $stayingPlan->id) }}"
+                                                        method="get">
+                                                        <button type="submit"
+                                                            class="mx-5 text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">詳細</button>
+                                                    </form>
+                                                </div>
+                                                <button type="button"
+                                                    onclick="openModal({{ $stayingPlan->id }}, {{ $key }})"
+                                                    class="mx-10 my-3 text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">
+                                                    カレンダーから予約
+                                                </button>
 
-                                        </div>
+                                            </div>
+                                        @endforeach
                                         <div class="pt-2 mb-3">
-                                            <div class="text-sm bg-white p-3 border-b border-gray-300 underline overflow-hidden"
+                                            {{-- <div class="text-sm bg-white p-3 border-b border-gray-300 underline overflow-hidden"
                                                 target="_blank" style="word-wrap: break-word;">
                                                 <a href="{{ url('/') }}" target="_blank">あ</a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -151,23 +149,28 @@
                             <script>
                                 var allReservationDates = {};
 
-                                @foreach ($stayingPlans as $plan)
-                                    var countByDate = @json($plan->reservationSlots->groupBy('day')->map->count());
-                                    console.log(countByDate);
-                                    var idsByDate = @json($plan->reservationSlotStayingPlans->groupBy('reservationSlot.day')->map->first()->pluck('id'));
-                                    console.log(idsByDate);
+                                @foreach ($stayingPlans as $stayingPlan)
+                                    allReservationDates[{{ $stayingPlan->id }}] = {};
+                                    @foreach ($stayingPlan->groupedSlots as $key => $plan)
+                                        var countByStock = @json($plan['slots']->pluck('stock', 'day'));
+                                        var idsByDate = @json($plan['slots']);
+                                        var pivotIds = idsByDate.map(function(slot) {
+                                            return slot.pivot.id;
+                                        });
 
+                                        allReservationDates[{{ $stayingPlan->id }}][{{ $key }}] = Object.keys(countByStock).map(function(
+                                            date, index) {
+                                            var count = countByStock[date];
+                                            var titleText = count > 2 ? '◯' : '残り：' + count + '部屋';
+                                            var eventId = pivotIds[index];
 
-                                    allReservationDates[{{ $plan->id }}] = Object.keys(countByDate).map(function(date, index) {
-                                        var titleText = countByDate[date] > 2 ? '◯' : '残り：' + countByDate[date] + '部屋';
-                                        var eventId = idsByDate[index]; // 同じインデックスのidsByDateの値を取得
-
-                                        return {
-                                            title: titleText,
-                                            start: date,
-                                            id: eventId, // idsByDateからIDを取得
-                                        };
-                                    });
+                                            return {
+                                                title: titleText,
+                                                start: date,
+                                                id: eventId,
+                                            };
+                                        });
+                                    @endforeach
                                 @endforeach
                             </script>
                         @endforeach
@@ -239,13 +242,15 @@
 
 
         <script>
-            function openModal(planId) {
+            function openModal(planId, planIndex) {
+                var calendarEvents = allReservationDates[planId][planIndex];
                 document.getElementById('calendarModal').style.display = 'flex';
 
                 function handleDateSelection(targetDate) {
-                    var selectedEvent = allReservationDates[planId].find(function(event) {
+                    var selectedEvent = allReservationDates[planId][planIndex].find(function(event) {
                         return event.start === targetDate;
                     });
+
 
                     if (selectedEvent) {
                         var selectedReservationSlotId = selectedEvent.id;
@@ -260,7 +265,7 @@
 
 
                 var calendarEl = document.getElementById('calendar');
-                var calendarEvents = allReservationDates[planId];
+
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
                     locale: 'ja',

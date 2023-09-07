@@ -14,9 +14,10 @@ class ReservationService
     public static function storeReservation($request): Reservation
     {
         $startDay = $request->start_day;
-        $endDay = Carbon::parse($startDay)->addDay()->toDateString();      
+        $endDay = Carbon::parse($startDay)->addDay()->toDateString();
 
         return Reservation::create([
+            'reservation_slot_staying_plan_id' => $request->reservation_slot_staying_plan_id,
             'first_name' =>  $request->first_name,
             'last_name' =>  $request->last_name,
             'number_of_people' =>  $request->number_of_people,

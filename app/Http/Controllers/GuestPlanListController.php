@@ -13,11 +13,25 @@ class GuestPlanListController extends Controller
      */
     public function index()
     {
-        // reservation_idがNULLのreservationSlotStayingPlansを持つStayingPlanだけ取得
-        $stayingPlans = StayingPlan::whereHas('reservationSlotStayingPlans', function ($query) {
-            $query->whereNull('reservation_id');
-        })->get();
-                
+        $stayingPlans = StayingPlan::with('reservationSlots')->get();
+
+        $stayingPlans->each(function ($stayingPlan) {
+            $groupedSlots = $stayingPlan->reservationSlots->groupBy(function ($slot) {
+                return $slot->room_master_id;
+            })->map(function ($slotsGroup) use ($stayingPlan) {
+                // 各グループの最初のslotからpriceを取得する
+                // すべてのslotが同じpriceを持っていると仮定しています。
+                $price = $stayingPlan->reservationSlots->where('id', $slotsGroup->first()->id)->first()->pivot->price;
+
+                return [
+                    'slots' => $slotsGroup,
+                    'price' => $price,
+                ];
+            });
+
+            $stayingPlan->groupedSlots = $groupedSlots;
+        });
+
         return view('guest.plan-list', compact('stayingPlans'));
     }
 
@@ -43,7 +57,7 @@ class GuestPlanListController extends Controller
     public function show(string $id)
     {
         $stayingPlan = StayingPlan::find($id);
-        
+
         return view('guest.plan-detail', compact('stayingPlan'));
     }
 
@@ -83,5 +97,4 @@ class GuestPlanListController extends Controller
         // ここで、$stayingPlans をビューに渡して表示します
         return view('guest.plan-list', compact('stayingPlans'));
     }
-
 }

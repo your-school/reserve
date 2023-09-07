@@ -17,8 +17,26 @@
                 <div class="mb-8">
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">プラン名</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                        <div class="flex flex-col">
+                        <div class="flex flex-col font-bold">
                             {{ $reservation_slot_staying_plan->stayingPlan->title }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label for="first_name" class="block mb-2 text-lg font-medium text-black">部屋名</label>
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="flex flex-col font-bold">
+                            {{ $reservation_slot_staying_plan->reservationSlot->roomMaster->room_type }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label for="first_name" class="block mb-2 text-lg font-medium text-black">料金</label>
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="flex flex-col font-bold">
+                            {{ $reservation_slot_staying_plan->price }}円
                         </div>
                     </div>
                 </div>
@@ -26,7 +44,7 @@
                 <div class="mb-8">
                     <label for="number_of_people" class="block mb-2 text-lg font-medium text-black mb-4">宿泊日時</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                        <div class="flex flex-col">
+                        <div class="flex flex-col font-bold">
                             {{ $reservation_slot_staying_plan->reservationSlot->day }}
                         </div>
                         {{-- <div class="flex flex-col">
@@ -130,7 +148,7 @@
 
                 <div class="flex justify-center my-16">
                     <button type="submit"
-                        class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">お問合せを送る</button>
+                        class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">予約する</button>
                 </div>
 
             </form>

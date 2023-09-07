@@ -40,18 +40,12 @@ class GuestReservationController extends Controller
         // $startDay = $request->start_day;
         // $endDay = Carbon::parse($startDay)->addDay()->toDateString();       
 
-        $reservation = ReservationService::storeReservation($request);
+        ReservationService::storeReservation($request);
 
         $reservation_slot_staying_plan = ReservationSlotStayingPlan::find($request->reservation_slot_staying_plan_id);
-        $reservation_slot_staying_plan->reservation_id = $reservation['id'];
-        $reservation_slot_staying_plan->save();
-
-        $reservationSlot=$reservation_slot_staying_plan->reservationSlot->first();
-        $reservationSlot->reservation_id = $reservation['id'];
-        // dd($reservationSlot);
-        $reservationSlot->save();
-
-        // $reservation_slot_staying_plan->reservation_id=$reservation->id;
+        $count = $reservation_slot_staying_plan->reservationSlot->stock;
+        $reservation_slot_staying_plan->reservationSlot->stock = $count - 1;
+        $reservation_slot_staying_plan->reservationSlot->save();
 
         return redirect()->route('home')->with('success', '予約を完了しました');
     }

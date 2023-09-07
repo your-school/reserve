@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ReservationSlot;
+use App\Models\RoomMaster;
 use App\Http\Requests\ReservationSlotRequest;
 use Carbon\Carbon;
 
@@ -14,26 +15,13 @@ class ReservationSlotController extends Controller
      */
     public function index()
     {
-        // 各部屋タイプに対応する予約枠を取得する
-    $roomTypes = [
-        '1' => 'シングルルーム',
-        '2' => 'ツインルーム',
-        '3' => 'デラックスルーム',
-        '4' => 'キングルーム',
-    ];
-    
+    $roomTypes = RoomMaster::get();
     $slots = [];
-    foreach ($roomTypes as $id => $type) {
-        $slotsByDay = ReservationSlot::where('room_master_id', $id)
-            ->where('day', '>=', Carbon::today())
-            ->orderBy('day', 'asc')
-            ->get()
-            ->groupBy('day'); // 日時でグループ化
-        
-        $slots[$type] = $slotsByDay;
+    foreach ($roomTypes as $roomType) {
+        $reservationSlots = ReservationSlot::where('room_master_id', $roomType['id'])->get();
+        $slots[$roomType['id']] = $reservationSlots;
     }
-    
-    return view('admin.reservation-slot', compact('slots', 'roomTypes'));
+    return view('admin.reservation-slot', compact( 'roomTypes', 'slots'));
     }
 
     /**
@@ -52,18 +40,14 @@ class ReservationSlotController extends Controller
         $startDay = Carbon::createFromFormat('Y-m-d', $request->start_day);
         $endDay = Carbon::createFromFormat('Y-m-d', $request->end_day);
         $roomMasterIds = $request->room_master_id;
-        $roomCount = $request->room_count;
 
         foreach ($roomMasterIds as $roomMasterId) {
             for ($i = $startDay->copy(); $i->lte($endDay); $i->addDay()) {
-                for ($j = 0; $j < $roomCount; $j++) {
                     ReservationSlot::create([
-                        'reservation_id' => null,
                         'room_master_id' => $roomMasterId,
                         'day' => $i->toDateString(),
-                        'cancel' => null,
+                        'stock' => $request->stock,
                     ]);
-                }
             }
         }
 
@@ -89,9 +73,13 @@ class ReservationSlotController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, ReservationSlot $reservationSlot)
     {
-        //
+        $reservationSlot->update([
+            'stock' => $request->input('stock'),
+        ]);
+
+        return redirect()->route('reservation_slot.index')->with('success', '部屋枠の数を変更しました。');
     }
 
     /**
@@ -114,7 +102,7 @@ class ReservationSlotController extends Controller
             ->whereNull('reservation_id')
             ->first()
             ->delete();
-    
+
         return redirect()->route('reservation_slot.index')->with('success', '日時データを削除しました。');
     }
     

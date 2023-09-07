@@ -14,7 +14,7 @@ class StayingPlan extends Model
         'image',
         'explain',
     ];
-    
+
     public function planImages()
     {
         return $this->HasMany(PlanImages::class);
@@ -22,16 +22,11 @@ class StayingPlan extends Model
 
     public function reservationSlots()
     {
-        return $this->belongsToMany(ReservationSlot::class, 'reservation_slot_staying_plans');
-    }
-
-    public function reservationSlotStayingPlans()
-    {
-        return $this->HasMany(ReservationSlotStayingPlan::class, 'staying_plan_id');
+        return $this->belongsToMany(ReservationSlot::class, 'reservation_slot_staying_plans')->withPivot('id', 'price');
     }
 
     public function scopeLatestOrder($query)
     {
         return $query->orderBy('updated_at', 'DESC');
-    }        
+    }
 }

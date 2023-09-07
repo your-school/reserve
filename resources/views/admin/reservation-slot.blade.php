@@ -8,10 +8,9 @@
             <div class="w-full overflow-hidden">
                 <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">予約枠一覧</div>
 
-
-                @foreach ($roomTypes as $roomType => $type)
-                    <div class="md:w-1/2 w-full p-4 md:my-8 md:mx-1 my-3 bg-gray-200 rounded">
-                        <div class="pb-3 ml-2 text-2xl font-bold">{{ $type }}</div>
+                @foreach ($roomTypes as $roomType)
+                    <div class=" p-4 md:my-20 md:mx-1 my-3 bg-gray-200 rounded">
+                        <div class="pb-3 ml-2 text-2xl font-bold">{{ $roomType->room_type }}</div>
                         <div class="bg-white overflow-auto">
                             <table class="min-w-full bg-white">
                                 <thead class="bg-gray-800 text-white">
@@ -23,20 +22,31 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-700">
-                                    @foreach ($slots[$type] as $day => $daySlots)
+                                    @foreach ($slots[$roomType->id] as $reservationSlot)
                                         <tr class="border-b">
-                                            <td class="text-center py-3 px-4">{{ $day }}</td>
-                                            <td class="text-center py-3 px-4">{{ $daySlots->count() }}</td> <!-- 部屋数の総数 -->
+                                            <td class="text-center py-3 px-4">{{ $reservationSlot->day }}</td>
                                             <td class="text-center py-3 px-4">
-                                                {{ $daySlots->whereNull('reservation_id')->count() }}</td>
-                                            <!-- 残り部屋数のカウント -->
+                                                <form action="{{ route('reservation_slot.update', $reservationSlot) }}"
+                                                    method="POST" class="flex justify-center space-x-3">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <input type="number" id="stock" name="stock"
+                                                        value="{{ $reservationSlot->stock }}"
+                                                        class="p-1 border rounded-md w-1/4">
+                                                    <button type="submit"
+                                                        class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg py-3 w-24 flex justify-center items-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
+                                                        変更
+                                                    </button>
+                                                </form>
+                                            </td>
+
+                                            <td class="text-center py-3 px-4">
+                                            </td>
                                             <td class="text-center py-3 px-2">
-                                                <form
-                                                    action="{{ route('reservation_slot.delete_by_date', ['room_master_id' => $roomType]) }}"
+                                                <form action="{{ route('reservation_slot.destroy', $reservationSlot) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="hidden" name="date" value="{{ $day }}">
                                                     <button type="submit"
                                                         class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg py-3 w-32 flex justify-center items-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
                                                         削除
@@ -50,10 +60,6 @@
                         </div>
                     </div>
                 @endforeach
-
-
-
-
 
                 <form action="{{ route('reservation_slot.create') }}" method="get">
                     <div class="flex justify-center my-16">

@@ -20,8 +20,24 @@ class StayingPlanController extends Controller
      */
     public function index()
     {
-        $stayingPlans = StayingPlan::with(['reservationSlots'])->get();
-        
+        $stayingPlans = StayingPlan::with('reservationSlots')->get();
+    
+        $stayingPlans->each(function ($stayingPlan) {
+            $groupedSlots = $stayingPlan->reservationSlots->groupBy(function ($slot) {
+                return $slot->room_master_id;
+            })->map(function ($slotsGroup) use ($stayingPlan) {
+                // 各グループの最初のslotからpriceを取得する
+                // すべてのslotが同じpriceを持っていると仮定しています。
+                $price = $stayingPlan->reservationSlots->where('id', $slotsGroup->first()->id)->first()->pivot->price;
+                return [
+                    'slots' => $slotsGroup,
+                    'price' => $price
+                ];
+            });
+    
+            $stayingPlan->groupedSlots = $groupedSlots;
+        });
+    
         return view('admin.staying-plan', compact('stayingPlans'));
     }
 
@@ -39,54 +55,77 @@ class StayingPlanController extends Controller
      */
     public function store(StayingPlanRequest $request)
     {
-        // 1. StayingPlanテーブルにデータの挿入
+        $startDay = Carbon::parse($request->start_day);
+        $endDay = Carbon::parse($request->end_day);
+        $roomMasterIds = $request->room_master_id;
+
+        // 送信された部屋タイプの料金のみを取得
+        $roomInputs = collect($request->input('price'))->filter(function($value) {
+            return !is_null($value);
+        });
+
+        $allMatchingReservationSlots = [];
+
+        foreach ($roomMasterIds as $roomMasterId) {
+            // 部屋枠が存在するか確認
+            $matchingReservationSlots = ReservationSlot::where('room_master_id', $roomMasterId)
+            ->whereBetween('day', [$startDay, $endDay])
+            ->get();
+
+            // 部屋枠が存在しない場合はエラーを返す
+            if($matchingReservationSlots->isEmpty()) {
+                return redirect()->back()->with('error', '指定した日付の予約枠が存在しません。');
+            }
+
+            // 部屋枠が存在する場合は$allMatchingReservationSlotsに追加
+            $allMatchingReservationSlots[$roomMasterId] = $matchingReservationSlots;
+        }
+
+        // StayingPlanテーブルにプラン情報を作成
         $stayingPlan = StayingPlan::create([
             'title' => $request->title,
             'explain' => $request->explain,
         ]);
 
-        // 3. ReservationSlotStayingPlanテーブルに関連するデータの挿入
-        $startDay = Carbon::parse($request->start_day);
-        $endDay = Carbon::parse($request->end_day);
-        
-        $reservationSlots = ReservationSlot::where('room_master_id', $request->room_master_id)
-                                   ->whereBetween('day', [$startDay, $endDay])
-                                   ->get();
-
-        foreach ($reservationSlots as $slot) {
-            ReservationSlotStayingPlan::create([
+        // 取得したroomMasterIdsに対してforeachループを実行
+        foreach ($roomMasterIds as $roomMasterId) {
+            // $allMatchingReservationSlotsに格納されているReservationSlotを取得し、ReservationSlotStayingPlanテーブルにデータを挿入
+            foreach($allMatchingReservationSlots[$roomMasterId] as $reservationSlot) {
+                // 中間テーブルの作成
+                ReservationSlotStayingPlan::create([
                 'staying_plan_id' => $stayingPlan->id,
-                'reservation_slot_id' => $slot->id,
-                'price' => $request->price,
+                'reservation_slot_id' => $reservationSlot->id,
+                'price' => $roomInputs[$roomMasterId],
             ]);
+            }
         }
 
-        // 2. PlanImagesテーブルに画像データの挿入
-        if ($request->hasFile('image')) {
-                // アップロードされたファイルを変数に格納
-            $upload_file = $request->file('image');
+        // // PlanImagesテーブルに画像データの挿入
+        // if ($request->hasFile('image')) {
+        //         // アップロードされたファイルを変数に格納
+        //     $upload_file = $request->file('image');
         
-            // アップロード先S3フォルダ名 
-            $dir = 'reservesystem';
+        //     // アップロード先S3フォルダ名 
+        //     $dir = 'reservesystem';
     
-            // バケット内の指定フォルダへアップロード ※putFileはLaravel側でファイル名の一意のIDを自動的に生成してくれます。
-            $s3_upload = Storage::disk('s3')->putFile('/'.$dir, $upload_file);
+        //     // バケット内の指定フォルダへアップロード ※putFileはLaravel側でファイル名の一意のIDを自動的に生成してくれます。
+        //     $s3_upload = Storage::disk('s3')->putFile('/'.$dir, $upload_file);
     
-            // ※オプション（ファイルダウンロード、削除時に使用するS3でのファイル保存名、アップロード先のパスを取得します。）
-            // アップロードファイルurlを取得
-            $s3_url = Storage::disk('s3')->url($s3_upload);
+        //     // ※オプション（ファイルダウンロード、削除時に使用するS3でのファイル保存名、アップロード先のパスを取得します。）
+        //     // アップロードファイルurlを取得
+        //     $s3_url = Storage::disk('s3')->url($s3_upload);
 
-            // s3_urlからS3でのファイル保存名取得
-            $s3_upload_file_name = explode("/", $s3_url)[5];
+        //     // s3_urlからS3でのファイル保存名取得
+        //     $s3_upload_file_name = explode("/", $s3_url)[5];
     
-            // アップロード先パスを取得 ※ファイルダウンロード、削除で使用します。
-            $s3_path = $dir.'/'.$s3_upload_file_name;
-            
-            PlanImages::create([
-                'image_path' => $upload_file,
-                'staying_plan_id' => $stayingPlan->id
-            ]);
-        }
+        //     // アップロード先パスを取得 ※ファイルダウンロード、削除で使用します。
+        //     $s3_path = $dir.'/'.$s3_upload_file_name;
+        
+        //     PlanImages::create([
+        //         'image_path' => $upload_file,
+        //         'staying_plan_id' => $stayingPlan->id
+        //     ]);
+        // }
 
         return redirect()->route('staying_plan.index')->with('success', '宿泊プランを作成しました。');
     }

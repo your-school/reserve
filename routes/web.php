@@ -48,7 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/inquiries/update/{id}', [InquiryController::class, 'update'])->name('inquiries.update');
     Route::get('/inquiries', [InquiryController::class, 'index'])->name('inquiries.index');
     Route::resource('reservation_slot', ReservationSlotController::class);
-    Route::delete('reservation_slot/{room_master_id}/delete_by_date', [ReservationSlotController::class, 'deleteByDate'])->name('reservation_slot.delete_by_date');
     Route::resource('staying_plan', StayingPlanController::class);
     Route::resource('reservation', ReservationController::class);
 

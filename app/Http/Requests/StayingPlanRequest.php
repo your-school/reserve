@@ -12,8 +12,9 @@ class StayingPlanRequest extends FormRequest
 {
     public function rules()
     {
-        return [
+        $rules = [
             'room_master_id' =>  "required",
+            'price' => 'array',
             'start_day' => [
                 'required',
                 'date',
@@ -29,10 +30,15 @@ class StayingPlanRequest extends FormRequest
                 'after_or_equal:' . Carbon::today()->toDateString(),
             ],
             'title' => ['required', 'string', 'min:2'],
-            'price' => ['required', 'integer', 'min:1'],
             'explain' => ['required', 'string'],
             'image' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
         ];
+
+        foreach($this->input('room_master_id', []) as $roomId) {
+            $rules["price.$roomId"] = 'required|integer|min:1';
+        }
+
+        return $rules;
     }
 
     public function attributes()
@@ -42,7 +48,7 @@ class StayingPlanRequest extends FormRequest
             'start_day' =>  "開始日",
             'end_day' =>  "終了日",
             'title' => "タイトル",
-            'price' => "料金",
+            'price.*' => "料金",
             'explain' => "説明",
             'image' => "画像",
         ];

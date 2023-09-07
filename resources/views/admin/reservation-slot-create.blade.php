@@ -55,8 +55,8 @@
                             <h1 class="text-2xl font-bold mb-4">部屋数を指定してください</h1>
                             <div class="flex flex-col space-y-4">
                                 <div class="flex flex-col">
-                                    <label for="room_count" class="text-lg mb-2">部屋数:</label>
-                                    <input type="number" id="room_count" name="room_count" min="1" max="200"
+                                    <label for="stock" class="text-lg mb-2">部屋数:</label>
+                                    <input type="number" id="stock" name="stock" min="1" max="200"
                                         class="p-2 border rounded-md">
                                 </div>
                             </div>

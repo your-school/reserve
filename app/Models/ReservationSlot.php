@@ -25,11 +25,6 @@ class ReservationSlot extends Model
         return $this->belongsToMany(StayingPlan::class, 'reservation_slot_staying_plans');
     }
 
-    public function reservationSlotStayingPlans()
-    {
-        return $this->HasMany(ReservationSlotStayingPlan::class, 'staying_plan_id');
-    }
-
     public function scopeLatestOrder($query)
     {
         return $query->orderBy('updated_at', 'DESC');
