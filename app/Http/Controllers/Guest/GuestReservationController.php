@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guest;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\StayingPlan;
 use App\Models\Reservation;
@@ -81,4 +82,25 @@ class GuestReservationController extends Controller
     {
         //
     }
+
+    public function checkStock($startDay, $endDay, $roomMasterId, $stayingPlanId)
+    {
+        $startDate = Carbon::parse($startDay);
+        $endDate = Carbon::parse($endDay);
+
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            $stock = ReservationSlot::where('day', $date)
+                        ->where('room_master_id', $roomMasterId)
+                        ->whereHas('stayingPlans', function($query) use ($stayingPlanId) {
+                            $query->where('id', $stayingPlanId); 
+                        })
+                        ->first();
+            if (!$stock || $stock->stock < 1) {
+                return response()->json(['message' => 'その期間は泊まれません。選択し直してください', 'status' => 'failed'], 400);
+            }
+        }
+
+        return response()->json(['message' => '宿泊可能です', 'status' => 'success'], 200);
+    }
+
 }

@@ -9,10 +9,22 @@
                 @csrf
                 <input type='hidden' name='reservation_slot_staying_plan_id'
                     value="{{ $reservation_slot_staying_plan['id'] }}">
-                <input type='hidden' name='start_day' value="{{ $reservation_slot_staying_plan->reservationSlot->day }}">
+                <input type='hidden' name='room_master_id' id="room_master_id"
+                    value="{{ $reservation_slot_staying_plan->reservationSlot->room_master_id }}">
+                <input type='hidden' name='staying_plan_id' id="staying_plan_id"
+                    value="{{ $reservation_slot_staying_plan->stayingPlan->id }}">
 
                 <h1 class="block text-4xl font-bold text-gray-800 text-black mb-11 text-center">予約フォーム </h1>
+                <div class="flex justify-center">
+                    <button type="button"
+                        class='hover:text-gray-100
+                        flex justify-center max-w-sm w-full bg-gradient-to-r from-orange-400 via-red-500 to-red-600 hover:from-orange-600 hover:via-red-600 hover:to-red-600 focus:outline-none text-white text-2xl uppercase font-bold shadow-md rounded-lg mx-auto p-3'>
+                        <div class="flex sm:flex-cols-12 gap-6">
 
+                        </div>
+                        <div class="col-span-2">予約する</div>
+                    </button>
+                </div>
 
                 <div class="mb-8">
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">プラン名</label>
@@ -42,20 +54,22 @@
                 </div>
 
                 <div class="mb-8">
-                    <label for="number_of_people" class="block mb-2 text-lg font-medium text-black mb-4">宿泊日時</label>
+                    <label for="number_of_people" class="block mb-2 text-lg font-medium text-black mb-4">宿泊期間</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                        <div class="flex flex-col font-bold">
-                            {{ $reservation_slot_staying_plan->reservationSlot->day }}
-                        </div>
-                        {{-- <div class="flex flex-col">
-                            <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md">
+                        <div class="flex flex-col">
+                            <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md"
+                                value="{{ $reservation_slot_staying_plan->reservationSlot->day }}" readonly>
                         </div>
                         <div class="flex flex-col">
                             <div class="p-2">〜</div>
                         </div>
                         <div class="flex flex-col">
-                            <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md">
-                        </div> --}}
+                            <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md"
+                                onchange="checkAvailability()">
+
+                        </div>
+                    </div>
+                    <div id="message" class="font-semibold text-red-500  font-medium rounded-lg text-lg py-5">
                     </div>
                 </div>
 
@@ -84,8 +98,12 @@
                 <!-- 宿泊人数 -->
                 <div class="mb-8">
                     <label for="number_of_people" class="block mb-2 text-lg font-medium text-black">宿泊人数</label>
-                    <input id="autocomplete" type="number" min="1" max="30" name='number_of_people'
+                    <select id="autocomplete" type="number" min="1" max="30" name='number_of_people'
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @for ($i = 1; $i <= $reservation_slot_staying_plan->reservationSlot->roomMaster->capacity; $i++)
+                            <option value="{{ $i }}">{{ $i }}名</option>
+                        @endfor
+                    </select>
                     @error('number_of_people')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -115,7 +133,7 @@
 
                 <!-- 郵便番号 -->
                 <div class="mb-8">
-                    <label for="post_code" class="block mb-2 text-lg font-medium text-black">郵便番号</label>
+                    <label for="post_code" class="block mb-2 text-lg font-medium text-black">郵便番号（ハイフンは抜いてください）</label>
                     <input id="zipcode" type="text" name='post_code'
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="郵便番号をご入力ください">
@@ -148,7 +166,7 @@
 
                 <div class="flex justify-center my-16">
                     <button type="submit"
-                        class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">予約する</button>
+                        class="font-semibold text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">予約する</button>
                 </div>
 
             </form>
@@ -171,6 +189,23 @@
             } else {
                 // 郵便番号がデータにない場合は何もしないか、エラーメッセージを表示します。
             }
+        }
+
+        function checkAvailability() {
+            const startDay = document.getElementById('start_day').value;
+            const endDay = document.getElementById('end_day').value;
+            const roomMasterId = document.getElementById('room_master_id').value;
+            const stayingPlanId = document.getElementById('staying_plan_id').value;
+
+            fetch(`/api/check-stock/${startDay}/${endDay}/${roomMasterId}/${stayingPlanId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const messageDiv = document.getElementById('message');
+                    messageDiv.textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
     </script>
 @endsection

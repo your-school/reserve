@@ -7,8 +7,8 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ReservationSlotController;
 use App\Http\Controllers\StayingPlanController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\GuestPlanListController;
-use App\Http\Controllers\GuestReservationController;
+use App\Http\Controllers\Guest\GuestReservationController;
+use App\Http\Controllers\Guest\GuestPlanListController;
 
 
 use App\Models\Reservation;

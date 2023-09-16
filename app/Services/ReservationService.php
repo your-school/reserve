@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class ReservationService
 {
     /**
-     *  倉庫マスタを登録
+     *  予約情報を登録
      */
     public static function storeReservation($request): Reservation
     {
@@ -32,7 +32,7 @@ class ReservationService
     }
 
     /**
-     * 倉庫マスタを更新
+     * 予約情報を更新
      */
     public function updateReservation(array $request, Reservation $Reservation): Reservation
     {
