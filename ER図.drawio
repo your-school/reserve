@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-14T08:56:02.982Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="KaMOAadHzM1eS8qJHpId" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-14T08:56:48.328Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="dGBNVreGsyYLL61x01dU" version="22.0.4" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="2577" dy="2029" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -650,10 +650,10 @@
         <mxCell id="xgFBi112i9guJ70MiZaF-8" value="遊漁船検索" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-5">
           <mxGeometry y="30" width="170" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-9" value="メモページ、初心者ページ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+        <mxCell id="xgFBi112i9guJ70MiZaF-9" value="アクセス案内" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="-235" y="1780" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-10" value="未定" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-9">
+        <mxCell id="xgFBi112i9guJ70MiZaF-10" value="案内ページ" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-9">
           <mxGeometry y="30" width="170" height="30" as="geometry" />
         </mxCell>
         <mxCell id="xgFBi112i9guJ70MiZaF-13" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;ユーザー&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=5;" vertex="1" parent="1">
@@ -770,17 +770,11 @@
         <mxCell id="xgFBi112i9guJ70MiZaF-47" value="過去の予約" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="700" y="1900" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xgFBi112i9guJ70MiZaF-49" target="xgFBi112i9guJ70MiZaF-51">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-49" value="気象情報一覧" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+        <mxCell id="xgFBi112i9guJ70MiZaF-49" value="お問合せ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="-520" y="1780" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-50" value="検索機能" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-49">
+        <mxCell id="xgFBi112i9guJ70MiZaF-50" value="投稿機能" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-49">
           <mxGeometry y="30" width="170" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-51" value="気象情報詳細" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="-520" y="1900" width="170" height="65" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
