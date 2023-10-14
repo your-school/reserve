@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-14T10:45:57.956Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="PeaV1GGwOb3GPtY7NptS" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-14T10:47:24.622Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="Vr4q65npUV7vh0uJAecc" version="22.0.4" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="2793" dy="2145" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -876,22 +876,19 @@
         <mxCell id="xgFBi112i9guJ70MiZaF-84" value="遊漁船運営者としてログインできる&lt;br&gt;URL,メアド,パスワードを共有" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="-162.5" y="3175" width="210" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-85" value="お問合せ対応" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+        <mxCell id="xgFBi112i9guJ70MiZaF-85" value="お問合せ一覧" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="345" y="2910" width="140" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-86" value="削除機能" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-85">
+        <mxCell id="xgFBi112i9guJ70MiZaF-86" value="自動削除機能" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-85">
           <mxGeometry y="30" width="140" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-87" value="気象情報編集" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="450" y="3105" width="140" height="65" as="geometry" />
+        <mxCell id="xgFBi112i9guJ70MiZaF-88" value="お問合せ詳細" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="345" y="3105" width="140" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-88" value="気象情報登録" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="240" y="3105" width="140" height="65" as="geometry" />
+        <mxCell id="xgFBi112i9guJ70MiZaF-114" value="対応ステータスの付与" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xgFBi112i9guJ70MiZaF-88">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="xgFBi112i9guJ70MiZaF-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xgFBi112i9guJ70MiZaF-86" target="xgFBi112i9guJ70MiZaF-88">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="xgFBi112i9guJ70MiZaF-86" target="xgFBi112i9guJ70MiZaF-87">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="xgFBi112i9guJ70MiZaF-91" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="xgFBi112i9guJ70MiZaF-85">
