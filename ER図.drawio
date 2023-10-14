@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-14T09:00:09.399Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="ZGVfKThLmMh9oFV8u0av" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-14T09:00:18.095Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="GZaN6vSCIXcARFTTw5J-" version="22.0.4" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="2793" dy="2145" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -752,7 +752,7 @@
           <mxGeometry y="30" width="170" height="30" as="geometry" />
         </mxCell>
         <mxCell id="xgFBi112i9guJ70MiZaF-41" value="予約完了" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="1060" y="2331.5" width="170" height="65" as="geometry" />
+          <mxGeometry x="1300" y="2340" width="170" height="65" as="geometry" />
         </mxCell>
         <mxCell id="xgFBi112i9guJ70MiZaF-42" value="予約の変更" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="274" y="2035" width="170" height="60" as="geometry" />
