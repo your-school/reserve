@@ -10,3 +10,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('check-stock/{startDay}/{endDay}/{roomMasterId}/{stayingPlanId}', [GuestReservationController::class, 'checkStock']);
+
+Route::get('/address/{zipCode}', [GuestReservationController::class, 'getAddress']);
+

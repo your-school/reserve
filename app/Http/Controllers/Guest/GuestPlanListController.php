@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\StayingPlan;
+use App\Models\Plan;
 
 
 class GuestPlanListController extends Controller
@@ -14,26 +14,32 @@ class GuestPlanListController extends Controller
      */
     public function index()
     {
-        $stayingPlans = StayingPlan::with('reservationSlots')->get();
-
-        $stayingPlans->each(function ($stayingPlan) {
-            $groupedSlots = $stayingPlan->reservationSlots->groupBy(function ($slot) {
+        $plans = Plan::get();
+        foreach ($plans as $plan) {
+            $groupedRooms = $plan->roomSlots->groupBy(function ($slot) {
                 return $slot->room_master_id;
-            })->map(function ($slotsGroup) use ($stayingPlan) {
-                // 各グループの最初のslotからpriceを取得する
-                // すべてのslotが同じpriceを持っていると仮定しています。
-                $price = $stayingPlan->reservationSlots->where('id', $slotsGroup->first()->id)->first()->pivot->price;
-
-                return [
-                    'slots' => $slotsGroup,
-                    'price' => $price,
-                ];
             });
+            $plan->groupedRooms = $groupedRooms;
+        }
 
-            $stayingPlan->groupedSlots = $groupedSlots;
-        });
+        // $plans->each(function ($plan) {
+        //     $groupedSlots = $plan->roomSlots->groupBy(function ($slot) {
+        //         return $slot->room_master_id;
+        //     })->map(function ($slotsGroup) use ($plan) {
+        //         // 各グループの最初のslotからpriceを取得する
+        //         // すべてのslotが同じpriceを持っていると仮定しています。
+        //         $price = $plan->roomSlots->where('id', $slotsGroup->first()->id)->first()->pivot->price;
 
-        return view('guest.plan-list', compact('stayingPlans'));
+        //         return [
+        //             'slots' => $slotsGroup,
+        //             'price' => $price,
+        //         ];
+        //     });
+
+        //     $plan->groupedSlots = $groupedSlots;
+        // });
+
+        return view('guest.plan-list', compact('plans'));
     }
 
     /**
@@ -55,11 +61,13 @@ class GuestPlanListController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Plan $plan)
     {
-        $stayingPlan = StayingPlan::find($id);
-
-        return view('guest.plan-detail', compact('stayingPlan'));
+        $groupedRooms = $plan->roomSlots->groupBy(function ($slot) {
+            return $slot->room_master_id;
+        });
+        $plan->groupedRooms = $groupedRooms;
+        return view('guest.plan-detail', compact('plan'));
     }
 
     /**
@@ -88,14 +96,15 @@ class GuestPlanListController extends Controller
 
     public function search(Request $request)
     {
+        
         $startDate = $request->input('start_day');
         $endDate = $request->input('end_day');
 
-        $stayingPlans = StayingPlan::whereHas('reservationSlots', function ($query) use ($startDate, $endDate) {
+        $plans = Plan::whereHas('roomSlots', function ($query) use ($startDate, $endDate) {
             $query->whereBetween('day', [$startDate, $endDate]);
         })->get();
 
-        // ここで、$stayingPlans をビューに渡して表示します
-        return view('guest.plan-list', compact('stayingPlans'));
+        // ここで、$Plans をビューに渡して表示します
+        return view('guest.plan-list', compact('plans'));
     }
 }

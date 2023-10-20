@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StayingPlan extends Model
+class Plan extends Model
 {
     use HasFactory;
 
@@ -20,9 +20,9 @@ class StayingPlan extends Model
         return $this->HasMany(PlanImages::class);
     }
 
-    public function reservationSlots()
+    public function roomSlots()
     {
-        return $this->belongsToMany(ReservationSlot::class, 'reservation_slot_staying_plans')->withPivot('id', 'price');
+        return $this->belongsToMany(RoomSlot::class, 'plan_rooms')->withPivot('id', 'price');
     }
 
     public function scopeLatestOrder($query)

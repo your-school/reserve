@@ -15,16 +15,7 @@
                     value="{{ $reservation_slot_staying_plan->stayingPlan->id }}">
 
                 <h1 class="block text-4xl font-bold text-gray-800 text-black mb-11 text-center">予約フォーム </h1>
-                <div class="flex justify-center">
-                    <button type="button"
-                        class='hover:text-gray-100
-                        flex justify-center max-w-sm w-full bg-gradient-to-r from-orange-400 via-red-500 to-red-600 hover:from-orange-600 hover:via-red-600 hover:to-red-600 focus:outline-none text-white text-2xl uppercase font-bold shadow-md rounded-lg mx-auto p-3'>
-                        <div class="flex sm:flex-cols-12 gap-6">
 
-                        </div>
-                        <div class="col-span-2">予約する</div>
-                    </button>
-                </div>
 
                 <div class="mb-8">
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">プラン名</label>
@@ -53,6 +44,7 @@
                     </div>
                 </div>
 
+                {{-- 宿泊期間 --}}
                 <div class="mb-8">
                     <label for="number_of_people" class="block mb-2 text-lg font-medium text-black mb-4">宿泊期間</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
@@ -66,7 +58,6 @@
                         <div class="flex flex-col">
                             <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md"
                                 onchange="checkAvailability()">
-
                         </div>
                     </div>
                     <div id="message" class="font-semibold text-red-500  font-medium rounded-lg text-lg py-5">
@@ -125,18 +116,26 @@
                     <label for="phone_number" class="block mb-2 text-lg font-medium text-black">電話番号</label>
                     <input id="phone" type="tel" name='phone_number'
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="電話番号をご入力ください">
+                        placeholder="例)00011112222">
                     @error('phone_number')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
 
+                {{-- <div class="flex justify-center">
+                    <button type="button" id="search"
+                        class='hover:text-gray-100
+                        flex justify-center max-w-sm w-full bg-gradient-to-r from-orange-400 via-red-500 to-red-600 hover:from-orange-600 hover:via-red-600 hover:to-red-600 focus:outline-none text-white text-2xl uppercase font-bold shadow-md rounded-lg mx-auto p-3'>
+                        <div class="col-span-2">住所検索</div>
+                    </button>
+                </div> --}}
+
                 <!-- 郵便番号 -->
                 <div class="mb-8">
                     <label for="post_code" class="block mb-2 text-lg font-medium text-black">郵便番号（ハイフンは抜いてください）</label>
-                    <input id="zipcode" type="text" name='post_code'
+                    <input id="zipcode_input" type="text" name='zipcode' value=""
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="郵便番号をご入力ください">
+                        placeholder="例)0001111">
                     @error('post_code')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -172,25 +171,10 @@
             </form>
         </section>
     </main>
+
+    {{-- <script src="https://cdn.jsdelivr.net/npm/fetch-jsonp@1.1.3/build/fetch-jsonp.min.js"></script> --}}
+    {{-- <script src="{{ asset('path/to/your/javascript/file.js') }}"></script> --}}
     <script>
-        function autoFillAddress() {
-            let zipcode = document.getElementById('zipcode').value;
-
-            // ここでは郵便番号から住所を取得する例としてダミーのデータを用います。
-            // 実際にはAPIやデータベースから正確な住所を取得する必要があります。
-            let addressData = {
-                "100-0001": "東京都千代田区皇居外苑",
-                // 他の郵便番号データ
-            };
-
-            let address = addressData[zipcode];
-            if (address) {
-                document.getElementById('address').value = address;
-            } else {
-                // 郵便番号がデータにない場合は何もしないか、エラーメッセージを表示します。
-            }
-        }
-
         function checkAvailability() {
             const startDay = document.getElementById('start_day').value;
             const endDay = document.getElementById('end_day').value;
@@ -201,11 +185,29 @@
                 .then(response => response.json())
                 .then(data => {
                     const messageDiv = document.getElementById('message');
+                    console.log(messageDiv)
+
                     messageDiv.textContent = data.message;
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
         }
+
+
+        document.getElementById('zipcode_input').addEventListener('change', function() {
+            var zipCode = this.value;
+
+            fetch(`/api/address/${zipCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.address) {
+                        document.getElementById('address').value = data.address;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching address:', error);
+                });
+        });
     </script>
 @endsection

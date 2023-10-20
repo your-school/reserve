@@ -7,8 +7,7 @@
         <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl">
             <div class="w-full overflow-hidden">
                 <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">宿泊プラン作成</div>
-
-                <form action="{{ route('staying_plan.store') }}" method="POST">
+                <form action="{{ route('admin.plan.store') }}" method="POST">
                     @method('POST')
                     @csrf
                     <div class="flex-grow flex flex-col inline-flex items-center">
@@ -45,17 +44,18 @@
                             </div>
                         </div>
 
-
                         <div class="container mx-auto my-8">
                             <h1 class="text-2xl font-bold mb-4">日にちの選択</h1>
                             <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                                 <div class="flex flex-col">
                                     <label for="start_day" class="text-lg mb-2">開始日:</label>
-                                    <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md">
+                                    <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md"
+                                        min="{{ today()->format('Y-m-d') }}">
                                 </div>
                                 <div class="flex flex-col">
                                     <label for="end_day" class="text-lg mb-2">終了日:</label>
-                                    <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md">
+                                    <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md"
+                                        min="{{ today()->format('Y-m-d') }}">
                                 </div>
                             </div>
                         </div>
@@ -97,29 +97,23 @@
                         </div>
                     </div>
                 </form>
-
-
             </div>
-
         </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-                checkboxes.forEach(function(checkbox) {
-                    checkbox.addEventListener('change', function() {
-                        const input = this.nextElementSibling;
-
-                        if (this.checked) {
-                            input.classList.remove('hidden');
-                        } else {
-                            input.classList.add('hidden');
-                        }
-                    });
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    const input = this.nextElementSibling;
+                    if (this.checked) {
+                        input.classList.remove('hidden');
+                    } else {
+                        input.classList.add('hidden');
+                    }
                 });
             });
-        </script>
-
-    </main>
+        });
+    </script>
 @endsection

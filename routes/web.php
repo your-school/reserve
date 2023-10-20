@@ -3,10 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\InquiryController;
-use App\Http\Controllers\ReservationSlotController;
-use App\Http\Controllers\StayingPlanController;
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\RoomSlotController;
+use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Guest\GuestReservationController;
 use App\Http\Controllers\Guest\GuestPlanListController;
 
@@ -37,21 +37,19 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin_home', function () {
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/home', function () {
         return view('admin.home');
-    })->name('admin_home');
+    })->name('home');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/inquiries/show/{id}', [InquiryController::class, 'show'])->name('inquiries.show');
     Route::patch('/inquiries/update/{id}', [InquiryController::class, 'update'])->name('inquiries.update');
     Route::get('/inquiries', [InquiryController::class, 'index'])->name('inquiries.index');
-    Route::resource('reservation_slot', ReservationSlotController::class);
-    Route::resource('staying_plan', StayingPlanController::class);
+    Route::resource('room_slot', RoomSlotController::class);
+    Route::resource('plan', PlanController::class);
     Route::resource('reservation', ReservationController::class);
-
-
 });
 
 Route::middleware('guest')->group(function () {
@@ -72,6 +70,12 @@ Route::middleware('guest')->group(function () {
     Route::resource('reservation', GuestReservationController::class)->except('create');
         
 });
+
+Route::get('admin_dev_login', function () {
+    abort_unless(app()->environment('local'), 403);
+    auth()->login(App\Models\User::first());
+    return redirect()->to('/admin/home');
+})->name('admin_dev_login');
 
 
 require __DIR__.'/auth.php';

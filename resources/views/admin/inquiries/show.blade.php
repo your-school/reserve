@@ -5,15 +5,12 @@
 
 
 @section('content')
-    <main>
+    <main class="max-w-8xl px-5 py-5 mx-auto md:px-10 tails-selected-element">
 
+        <section class="flex flex-col items-center justify-center h-screen flex-wrap overflow-hidden md:px-0">
 
-        <main class="max-w-6xl px-5 py-5 md:py-10 mx-auto md:px-10 tails-selected-element">
-
-
-            <section class="flex flex-wrap overflow-hidden md:px-0">
-
-                <div class="p-12 md:w-1/2 flex flex-col items-start">
+            <div class="flex justify-center">
+                <div class="w-full md:w-4/6">
                     <div class="w-full overflow-hidden md:w-4/6">
                         <div class="my-4"><span class="font-bold text-2xl">苗字 :</span><span
                                 class="ml-1.5">{{ $inquiry['first_name'] }}</div>
@@ -26,15 +23,13 @@
                         <div class="my-4"><span class="font-bold text-2xl">対応日時 :</span><span
                                 class="ml-1.5">{{ $inquiry['updated_at'] }}</div>
                     </div>
-                </div>
-                <div class="p-12 md:w-1/2 flex flex-col items-start">
                     <h2 class="sm:text-3xl title-font font-bold text-2xl text-gray-900 mt-4 mb-4">
                         {{ $inquiry['inquiry_category'] }}</h2>
                     <p class="leading-relaxed mb-8">{{ $inquiry['content'] }}</p>
                     <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
                         <a class="text-indigo-500 inline-flex items-center">
                     </div>
-                    <form action="{{ route('inquiries.update', $inquiry->id) }}" method="POST">
+                    <form action="{{ route('admin.inquiries.update', $inquiry->id) }}" method="POST">
                         @method('PATCH')
                         @csrf
                         <a class="inline-flex items-center">
@@ -59,10 +54,9 @@
                         </a>
                     </form>
                 </div>
+            </div>
 
-            </section>
-
-        </main>
+        </section>
 
     </main>
 @endsection

@@ -53,13 +53,13 @@
 
 
             <a class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-white select-none"
-                href="{{ url('admin_home') }}">
+                href="{{ url('admin/home') }}">
                 <span class="ml-3 text-xl">管理者サイド</span>
             </a>
 
             <nav class="items-center justify-center hidden space-x-7 text-white md:flex">
                 @section('home-link')
-                    <a href="{{ url('admin_home') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                    <a href="{{ url('admin/home') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                         @mouseleave="hover = false"
                         class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
                         <span class="block">ホーム</span>
@@ -92,7 +92,7 @@
                     </a>
                 @show --}}
 
-                <a href="{{ route('inquiries.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                <a href="{{ route('admin.inquiries.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                     @mouseleave="hover = false"
                     class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
                     <span class="block">お問合せ対応</span>
@@ -107,7 +107,7 @@
                     </span>
                 </a>
 
-                <a href="{{ route('reservation_slot.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                <a href="{{ route('admin.room_slot.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                     @mouseleave="hover = false"
                     class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
                     <span class="block">予約枠管理</span>
@@ -122,7 +122,7 @@
                     </span>
                 </a>
 
-                <a href="{{ route('staying_plan.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                <a href="{{ route('admin.plan.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                     @mouseleave="hover = false"
                     class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
                     <span class="block">宿泊プラン管理</span>
@@ -137,7 +137,7 @@
                     </span>
                 </a>
 
-                <a href="{{ route('reservation.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                <a href="{{ route('admin.reservation.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                     @mouseleave="hover = false"
                     class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
                     <span class="block">予約者管理</span>
@@ -176,7 +176,7 @@
                 @show --}}
 
                 @section('profile-link')
-                    <a href="{{ route('profile.edit') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                    <a href="{{ route('admin.profile.edit') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                         @mouseleave="hover = false"
                         class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
                         <span class="block"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -251,7 +251,7 @@
 
     <footer class="bg-gray-100">
         <div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col mx-auto max-w-7xl">
-            <a href="{{ url('admin_home') }}"
+            <a href="{{ url('admin/home') }}"
                 class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                 <span class="ml-3 text-xl">予約システム</span>
             </a>

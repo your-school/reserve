@@ -10,12 +10,13 @@ class PlanImages extends Model
     use HasFactory;
 
     protected $fillable = [
-        'staying_plan_id',
+        'plan_id',
         'image_path',
+        'image_url',
     ];
 
-    public function stayingPlan()
+    public function plan()
     {
-        return $this->belongsTo(StayingPlan::class);
+        return $this->belongsTo(Plan::class);
     }
 }

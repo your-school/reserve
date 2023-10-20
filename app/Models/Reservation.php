@@ -10,7 +10,6 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'reservation_slot_staying_plan_id',
         'first_name',
         'last_name',
         'number_of_people',
@@ -26,8 +25,8 @@ class Reservation extends Model
         'cancel',
     ];
 
-    public function reservationSlotStayingPlans()
+    public function planRooms()
     {
-        return $this->belongsTo(ReservationSlotStayingPlan::class);
+        return $this->belongsToMany(PlanRoom::class, 'plan_room_reservations');
     }
 }

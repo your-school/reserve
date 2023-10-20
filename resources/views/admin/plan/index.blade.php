@@ -8,11 +8,11 @@
             <div class="w-full overflow-hidden">
                 <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">宿泊プラン一覧</div>
 
-                @foreach ($stayingPlans as $stayingPlan)
-                    <div class="md:w-1/2 w-full p-4 md:my-8 md:mx-1 my-3 bg-gray-200 rounded">
+                @foreach ($plans as $plan)
+                    <div class="w-full p-4 md:my-8 md:mx-1 my-3 bg-gray-200 rounded">
                         <div class="flex justify-between">
-                            <div class="pb-3 ml-2 text-2xl font-bold">{{ $stayingPlan->title }}</div>
-                            {{-- <form action="{{ route('staying_plan.destroy', $stayingPlan) }}" method="POST">
+                            <div class="pb-3 ml-2 text-2xl font-bold">{{ $plan->title }}</div>
+                            {{-- <form action="{{ route('admin.staying_plan.destroy', $plan) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
@@ -31,17 +31,17 @@
                                         <th class="text-center py-3 px-4 uppercase font-semibold text-sm">終了日</th>
                                     </tr>
                                 </thead>
-                                @foreach ($stayingPlan->groupedSlots as $plan)
+                                @foreach ($plan->groupedSlots as $plan)
                                     <tbody class="text-gray-700">
                                         <tr class="border-b">
                                             <td class="text-center py-3 px-2">
-                                                {{ $plan['slots']->first()->roomMaster->room_type }}
+                                                {{ $plan['slots']->first()->roomMaster->name }}
                                                 {{-- {{ $plan->reservationSlots->first()->roomMaster->room_type }} --}}
                                             </td>
                                             <td class="text-center py-3 px-4">
                                                 {{ $plan['price'] }}
-                                                {{-- {{ $stayingPlan->reservationSlotStayingPlans->first() }} --}}
-                                                {{-- {{ $plan->first()->reservationSlotStayingPlans->first()->price }} --}}
+                                                {{-- {{ $plan->reservationSlotplans->first() }} --}}
+                                                {{-- {{ $plan->first()->reservationSlotplans->first()->price }} --}}
                                             </td>
                                             <td class="text-center py-3 px-4">
                                                 {{ $plan['slots']->min('day') }}
@@ -63,7 +63,7 @@
 
 
 
-                <form action="{{ route('staying_plan.create') }}" method="get">
+                <form action="{{ route('admin.plan.create') }}" method="get">
                     <div class="flex justify-center my-16">
                         <button type="submit"
                             class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">

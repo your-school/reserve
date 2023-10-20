@@ -77,9 +77,10 @@
                         @endif
                     </div>
 
-                    <button
-                        class="mx-1 mb-1 mt-4 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg"
-                        onclick="developerLogin()">開発者ログイン</button>
+                    @if (app()->environment('local'))
+                        <a href="{{ route('admin_dev_login') }}"
+                            class="mx-1 mb-1 mt-4 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg text-center">開発中ログイン</a>
+                    @endif
 
                 </div>
             </div>
@@ -87,11 +88,4 @@
         </form>
 
     </main>
-    <script>
-        function developerLogin() {
-            document.getElementById('email').value = 'test@test.com'; // 開発者のEメール
-            document.getElementById('password').value = 'testtest'; // 開発者のパスワード
-            document.getElementById('login-form').submit(); // フォーム送信
-        }
-    </script>
 @endsection

@@ -14,9 +14,9 @@ class RoomMasterSeeder extends Seeder
     {
         \DB::table('room_masters')->insert([
             [
-                'room_type' => 'シングルルーム',
+                'name' => 'シングルルーム',
                 'capacity' => 1,
-                'image' => '',
+                'image_url' => '',
                 'explain' => 'シングルルームです',
                 'facility' => '6畳のお部屋です',
                 'stock' =>  10,
@@ -24,9 +24,9 @@ class RoomMasterSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'room_type' => 'ツインルーム',
+                'name' => 'ツインルーム',
                 'capacity' => 2,
-                'image' => '',
+                'image_url' => '',
                 'explain' => 'ツインルームです',
                 'facility' => '8畳のお部屋です',
                 'stock' => 10,
@@ -34,9 +34,9 @@ class RoomMasterSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'room_type' => 'デラックスルーム',
+                'name' => 'デラックスルーム',
                 'capacity' => 4,
-                'image' => '',
+                'image_url' => '',
                 'explain' => 'デラックスルームです',
                 'facility' => '2部屋続きのお部屋です',
                 'stock' => 3,
@@ -44,9 +44,9 @@ class RoomMasterSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'room_type' => 'ロイヤルルーム',
+                'name' => 'ロイヤルルーム',
                 'capacity' => 4,
-                'image' => '',
+                'image_url' => '',
                 'explain' => 'ロイヤルルームです',
                 'facility' => '4部屋続きのお部屋です。個室サウナ付きです',
                 'stock' => 2,

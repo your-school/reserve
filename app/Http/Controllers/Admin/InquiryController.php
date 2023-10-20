@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\InquiryRequest;
 use App\Models\Inquiries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mail\ToCustomerMail;
 use App\Mail\ToAdminMail;
+use App\Services\InquiryService;
 
 class InquiryController extends Controller
 {
@@ -18,7 +20,7 @@ class InquiryController extends Controller
     {
         $inquiries = Inquiries::latestOrder()->paginate(10);
 
-        return view('admin.admin-inquiries', compact('inquiries'));
+        return view('admin.inquiries.index', compact('inquiries'));
     }
 
     /**
@@ -34,20 +36,7 @@ class InquiryController extends Controller
      */
     public function store(InquiryRequest $request)
     {
-        Inquiries::create([
-            'first_name' => $request['first_name'],
-            'last_name' => $request['last_name'],
-            'email' => $request['email'],
-            'inquiry_category' => $request['inquiry_category'],
-            'content' => $request['content'],
-            'status' => '0',
-        ]);
-
-        $full_name = $request['first_name'] . ' ' . $request['last_name'];
-
-        \Mail::to($request->email) -> send(new ToCustomerMail($request['content'], $full_name));
-        \Mail::to('hello@example.com') -> send(new ToAdminMail($request['content'], $full_name));
-
+        InquiryService::store($request);
 
         return redirect()->route('home')->with('success', 'お問合せが完了しました。返答までしばしお待ちください。');
     }
@@ -59,7 +48,7 @@ class InquiryController extends Controller
     {
         $inquiry = Inquiries::find($id);
 
-        return view('admin.admin-inquiries-detail', compact('inquiry'));
+        return view('admin.inquiries.show', compact('inquiry'));
     }
 
     /**
@@ -76,11 +65,9 @@ class InquiryController extends Controller
     public function update(Request $request, string $id)
     {
         $inquiry = Inquiries::find($id);
+        InquiryService::update($request, $inquiry);
 
-        $inquiry->status = $request['status'];
-        $inquiry->save();
-
-        return redirect()->route('inquiries.show', $id)->with('success', 'ステータスを変更しました。');
+        return redirect()->route('admin.inquiries.show', $id)->with('success', 'ステータスを変更しました。');
     }
 
 
