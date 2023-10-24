@@ -7,12 +7,7 @@
             <form id="inquiry-form" method="POST" action="{{ route('reservation.store') }}" enctype="multipart/form-data">
                 @method('POST')
                 @csrf
-                <input type='hidden' name='reservation_slot_staying_plan_id'
-                    value="{{ $reservation_slot_staying_plan['id'] }}">
-                <input type='hidden' name='room_master_id' id="room_master_id"
-                    value="{{ $reservation_slot_staying_plan->reservationSlot->room_master_id }}">
-                <input type='hidden' name='staying_plan_id' id="staying_plan_id"
-                    value="{{ $reservation_slot_staying_plan->stayingPlan->id }}">
+                <input type='hidden' name='plan_room_id' value="{{ $planRoom['id'] }}">
 
                 <h1 class="block text-4xl font-bold text-gray-800 text-black mb-11 text-center">予約フォーム </h1>
 
@@ -21,7 +16,7 @@
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">プラン名</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <div class="flex flex-col font-bold">
-                            {{ $reservation_slot_staying_plan->stayingPlan->title }}
+                            {{ $planRoom->plan->title }}
                         </div>
                     </div>
                 </div>
@@ -30,7 +25,7 @@
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">部屋名</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <div class="flex flex-col font-bold">
-                            {{ $reservation_slot_staying_plan->reservationSlot->roomMaster->room_type }}
+                            {{ $planRoom->roomSlot->roomMaster->name }}
                         </div>
                     </div>
                 </div>
@@ -39,7 +34,7 @@
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">料金</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <div class="flex flex-col font-bold">
-                            {{ $reservation_slot_staying_plan->price }}円
+                            {{ $planRoom->price }}円
                         </div>
                     </div>
                 </div>
@@ -50,13 +45,15 @@
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <div class="flex flex-col">
                             <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md"
-                                value="{{ $reservation_slot_staying_plan->reservationSlot->day }}" readonly>
+                                value="{{ $planRoom->roomSlot->day }}" readonly>
                         </div>
                         <div class="flex flex-col">
                             <div class="p-2">〜</div>
                         </div>
                         <div class="flex flex-col">
                             <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md"
+                                min="{{ \Carbon\Carbon::parse($planRoom->roomSlot->day)->addDay()->format('Y-m-d') }}"
+                                value="{{ \Carbon\Carbon::parse($planRoom->roomSlot->day)->addDay()->format('Y-m-d') }}"
                                 onchange="checkAvailability()">
                         </div>
                     </div>
@@ -91,7 +88,7 @@
                     <label for="number_of_people" class="block mb-2 text-lg font-medium text-black">宿泊人数</label>
                     <select id="autocomplete" type="number" min="1" max="30" name='number_of_people'
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        @for ($i = 1; $i <= $reservation_slot_staying_plan->reservationSlot->roomMaster->capacity; $i++)
+                        @for ($i = 1; $i <= $planRoom->roomSlot->roomMaster->capacity; $i++)
                             <option value="{{ $i }}">{{ $i }}名</option>
                         @endfor
                     </select>
@@ -133,7 +130,7 @@
                 <!-- 郵便番号 -->
                 <div class="mb-8">
                     <label for="post_code" class="block mb-2 text-lg font-medium text-black">郵便番号（ハイフンは抜いてください）</label>
-                    <input id="zipcode_input" type="text" name='zipcode' value=""
+                    <input id="zipcode_input" type="text" name='post_code' value=""
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="例)0001111">
                     @error('post_code')
@@ -179,9 +176,9 @@
             const startDay = document.getElementById('start_day').value;
             const endDay = document.getElementById('end_day').value;
             const roomMasterId = document.getElementById('room_master_id').value;
-            const stayingPlanId = document.getElementById('staying_plan_id').value;
+            const planId = document.getElementById('plan_id').value;
 
-            fetch(`/api/check-stock/${startDay}/${endDay}/${roomMasterId}/${stayingPlanId}`)
+            fetch(`/api/check-stock/${startDay}/${endDay}/${roomMasterId}/${planId}`)
                 .then(response => response.json())
                 .then(data => {
                     const messageDiv = document.getElementById('message');

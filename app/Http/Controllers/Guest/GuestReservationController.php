@@ -25,29 +25,23 @@ class GuestReservationController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(string $id)
+    // 予約画面を表示
+    public function create(string $planRoomId)
     {
-        $planRoom = PlanRoom::find($id);
-        return view('guest.reservation-create', compact('planRoom'));
+        $planRoom = PlanRoom::find($planRoomId);
+        return view('guest.reservation.create', compact('planRoom'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(GuestReservationRequest $request)
+    // 予約確認画面を表示
+    public function confirm()
     {
-        // $startDay = $request->start_day;
-        // $endDay = Carbon::parse($startDay)->addDay()->toDateString();       
+        return view('guest.reservation.confirm');
+    }
 
+    // 予約の保存
+    public function store(Request $request)
+    {
         ReservationService::storeReservation($request);
-
-        $reservation_slot_staying_plan = ReservationSlotStayingPlan::find($request->reservation_slot_staying_plan_id);
-        $count = $reservation_slot_staying_plan->reservationSlot->stock;
-        $reservation_slot_staying_plan->reservationSlot->stock = $count - 1;
-        $reservation_slot_staying_plan->reservationSlot->save();
 
         return redirect()->route('home')->with('success', '予約を完了しました');
     }
@@ -92,11 +86,11 @@ class GuestReservationController extends Controller
 
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
             $stock = ReservationSlot::where('day', $date)
-                        ->where('room_master_id', $roomMasterId)
-                        ->whereHas('stayingPlans', function($query) use ($stayingPlanId) {
-                            $query->where('staying_plans.id', $stayingPlanId);
-                        })
-                        ->first();                        
+                ->where('room_master_id', $roomMasterId)
+                ->whereHas('stayingPlans', function ($query) use ($stayingPlanId) {
+                    $query->where('staying_plans.id', $stayingPlanId);
+                })
+                ->first();
             if (!$stock || $stock->stock < 1) {
                 return response()->json(['message' => 'その期間は泊まれません。選択し直してください', 'status' => 'failed'], 400);
             }
@@ -123,5 +117,4 @@ class GuestReservationController extends Controller
 
         return response()->json(['address' => $address]);
     }
-
 }

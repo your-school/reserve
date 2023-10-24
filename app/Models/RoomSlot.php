@@ -29,4 +29,9 @@ class RoomSlot extends Model
     {
         return $query->orderBy('updated_at', 'DESC');
     }
+
+    public function planRooms()
+    {
+        return $this->hasMany(PlanRoom::class);
+    }
 }

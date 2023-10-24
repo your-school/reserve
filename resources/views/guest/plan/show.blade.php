@@ -72,11 +72,15 @@
                                                         {{ $room}}</span></div> --}}
                                             <div class="text-sm bg-white p-3">最大人数：
                                                 {{ $rooms->first()->roomMaster->capacity }}人</div>
-                                            <button type="button"
+                                            {{-- <button type="button"
                                                 onclick="openModal({{ $plan }}, {{ $rooms }} )"
                                                 class="mx-10 my-3 text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">
                                                 カレンダーから予約
-                                            </button>
+                                            </button> --}}
+                                            <a href="{{ route('plan.showCalender', ['plan' => $plan, 'roomMasterId' => $rooms->first()->room_master_id]) }}"
+                                                class="mx-10 my-3 text-gray-600 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none border border-gray-600 focus:ring-gray-300 font-medium rounded-lg text-lg px-7 py-2 text-center">
+                                                カレンダーから予約
+                                            </a>
                                         </div>
                                         <div id="calendarModal"
                                             class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-60 flex justify-center items-center hidden">
@@ -84,7 +88,7 @@
                                                 <div id="calendar"></div>
                                             </div>
                                         </div>
-                                        <script>
+                                        {{-- <script>
                                             document.addEventListener('DOMContentLoaded', function() {
                                                 var calendarEl = document.getElementById('calendar');
 
@@ -138,14 +142,12 @@
 
                                                 calendar.render();
                                             });
-                                        </script>
+                                        </script> --}}
                                     @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                     {{-- <div class="my-2 mx-1.5">
                         @foreach ($plan->roomSlots->pluck('day')->unique()->sort()->values() as $day)
                             <div class="mt-2 p-4 border border-gray-300 rounded">
@@ -167,8 +169,5 @@
                 </div>
             </section>
         </div>
-
-
-
     </main>
 @endsection

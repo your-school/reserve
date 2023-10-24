@@ -65,10 +65,10 @@ Route::middleware('guest')->group(function () {
         ->name('inquiry.store');
 
     Route::get('/plan/search', [GuestPlanListController::class, 'search'])->name('plan.search');
+    Route::get('/plan/show_calender/{plan}/{roomMasterId}', [GuestPlanListController::class, 'showCalender'])->name('plan.showCalender');
     Route::resource('plan', GuestPlanListController::class);
-    Route::get('reservation/create/{id}', [GuestReservationController::class, 'create'])->name('reservation.create');
+    Route::get('reservation/create/{planRoomId}', [GuestReservationController::class, 'create'])->name('reservation.create');
     Route::resource('reservation', GuestReservationController::class)->except('create');
-        
 });
 
 Route::get('admin_dev_login', function () {
@@ -78,4 +78,4 @@ Route::get('admin_dev_login', function () {
 })->name('admin_dev_login');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
