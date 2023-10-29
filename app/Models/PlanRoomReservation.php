@@ -9,7 +9,7 @@ class PlanRoomReservation extends Model
 {
     use HasFactory;
 
-    protected $table = 'room_plan_reservations'; // テーブル名を指定
+    protected $table = 'plan_room_reservations'; // テーブル名を指定
 
     protected $fillable = [
         'reservation_id',
@@ -25,5 +25,4 @@ class PlanRoomReservation extends Model
     {
         return $this->belongsTo(Reservation::class);
     }
-
 }

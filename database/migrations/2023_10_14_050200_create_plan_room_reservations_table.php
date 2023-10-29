@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('plan_room_id')->constrained();
             $table->foreignId('reservation_id')->constrained();
-            $table->integer('price');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
 @section('content')
     <main>
         <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl">
-            <form id="inquiry-form" method="POST" action="{{ route('reservation.store') }}" enctype="multipart/form-data">
+            <form id="inquiry-form" method="POST" action="{{ route('reservation.confirm') }}" enctype="multipart/form-data">
                 @method('POST')
                 @csrf
                 <input type='hidden' name='plan_room_id' value="{{ $planRoom['id'] }}">
@@ -162,7 +162,7 @@
 
                 <div class="flex justify-center my-16">
                     <button type="submit"
-                        class="font-semibold text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">予約する</button>
+                        class="font-semibold text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">予約内容を確認する</button>
                 </div>
 
             </form>

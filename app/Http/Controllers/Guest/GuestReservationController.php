@@ -33,15 +33,19 @@ class GuestReservationController extends Controller
     }
 
     // 予約確認画面を表示
-    public function confirm()
+    public function confirm(Request $request)
     {
-        return view('guest.reservation.confirm');
+        session()->put($request->all());
+        return view('guest.reservation.confirm',[
+            'request' => $request,
+            'planRoom' => PlanRoom::find($request->plan_room_id),
+        ]);
     }
 
     // 予約の保存
     public function store(Request $request)
     {
-        ReservationService::storeReservation($request);
+        ReservationService::storeReservation(session()->all());
 
         return redirect()->route('home')->with('success', '予約を完了しました');
     }

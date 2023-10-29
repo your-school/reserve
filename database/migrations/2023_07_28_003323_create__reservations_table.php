@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('reservation_status')->nullable();
             $table->text('admin_memo')->nullable();
             $table->integer('total_price')->nullable();
-            $table->boolean('cancel')->default(false);
+            $table->boolean('cancel_flag')->default(false);
             $table->timestamps();
         });
     }

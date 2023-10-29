@@ -15,6 +15,18 @@ class RoomSlot extends Model
         'stock',
     ];
 
+    // 予約枠削除時、紐づくデータの削除
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($roomSlot) {
+            foreach ($roomSlot->planRooms as $planRoom) {
+                $planRoom->delete();
+            }
+        });
+    }
+
     public function roomMaster()
     {
         return $this->belongsTo(RoomMaster::class);

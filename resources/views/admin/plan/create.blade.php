@@ -7,7 +7,7 @@
         <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl">
             <div class="w-full overflow-hidden">
                 <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">宿泊プラン作成</div>
-                <form action="{{ route('admin.plan.store') }}" method="POST">
+                <form action="{{ route('admin.plan.store') }}" method="POST" enctype="multipart/form-data">
                     @method('POST')
                     @csrf
                     <div class="flex-grow flex flex-col inline-flex items-center">

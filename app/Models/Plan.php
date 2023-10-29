@@ -15,6 +15,21 @@ class Plan extends Model
         'explain',
     ];
 
+    // プラン削除時、紐づくデータの削除
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($plan) {
+            foreach ($plan->planImages as $image) {
+                $image->delete();
+            }
+            foreach ($plan->planRooms as $planRoom) {
+                $planRoom->delete();
+            }
+        });
+    }
+
     public function planImages()
     {
         return $this->HasMany(PlanImages::class);

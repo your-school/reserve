@@ -140,7 +140,7 @@
                 <a href="{{ route('admin.reservation.index') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                     @mouseleave="hover = false"
                     class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
-                    <span class="block">予約者管理</span>
+                    <span class="block">予約管理</span>
                     <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                         <span x-show="hover"
                             class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"

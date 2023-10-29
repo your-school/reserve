@@ -67,7 +67,9 @@ Route::middleware('guest')->group(function () {
     Route::get('/plan/search', [GuestPlanListController::class, 'search'])->name('plan.search');
     Route::get('/plan/show_calender/{plan}/{roomMasterId}', [GuestPlanListController::class, 'showCalender'])->name('plan.showCalender');
     Route::resource('plan', GuestPlanListController::class);
+
     Route::get('reservation/create/{planRoomId}', [GuestReservationController::class, 'create'])->name('reservation.create');
+    Route::post('reservation/confirm', [GuestReservationController::class, 'confirm'])->name('reservation.confirm');
     Route::resource('reservation', GuestReservationController::class)->except('create');
 });
 
