@@ -78,19 +78,4 @@ class ReservationService
             'admin_memo' =>  $request['admin_memo'],
         ]);
     }
-
-    // 予約情報を削除
-    public static function destroyReservation(Reservation $reservation): bool
-    {
-        \DB::transaction(function () use ($reservation) {
-            $cancelPlanRooms = $reservation->planRooms()->get();
-            foreach ($cancelPlanRooms as $cancelPlanRoom) {
-                $cancelRoomSlot = $cancelPlanRoom->roomSlot()->first();
-                $cancelRoomSlot->stock = $cancelRoomSlot->stock + 1;
-                $cancelRoomSlot->save();
-            }
-            $reservation->delete();
-        });
-        return true;
-    }
 }

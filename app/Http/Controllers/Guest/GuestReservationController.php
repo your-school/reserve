@@ -35,8 +35,12 @@ class GuestReservationController extends Controller
     // 予約確認画面を表示
     public function confirm(Request $request)
     {
-        session()->put($request->all());
-        return view('guest.reservation.confirm',[
+        // session()->put($request->all());
+        // flashは連想配列で受け取れないためForeachで回して保存
+        foreach ($request->all() as $key => $value) {
+            session()->flash($key, $value);
+        }
+        return view('guest.reservation.confirm', [
             'request' => $request,
             'planRoom' => PlanRoom::find($request->plan_room_id),
         ]);
@@ -82,17 +86,17 @@ class GuestReservationController extends Controller
         //
     }
 
-    public function checkStock($startDay, $endDay, $roomMasterId, $stayingPlanId)
+    public function checkStock($startDay, $endDay, $roomMasterId, $planId)
     {
         // \DB::enableQueryLog();
         $startDate = Carbon::parse($startDay);
         $endDate = Carbon::parse($endDay);
 
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-            $stock = ReservationSlot::where('day', $date)
+            $stock = RoomSlot::where('day', $date)
                 ->where('room_master_id', $roomMasterId)
-                ->whereHas('stayingPlans', function ($query) use ($stayingPlanId) {
-                    $query->where('staying_plans.id', $stayingPlanId);
+                ->whereHas('plans', function ($query) use ($planId) {
+                    $query->where('plans.id', $planId);
                 })
                 ->first();
             if (!$stock || $stock->stock < 1) {

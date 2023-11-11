@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('plan_room_reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plan_room_id')->constrained();
-            $table->foreignId('reservation_id')->constrained();
+            $table->foreignId('plan_room_id');
+            $table->foreignId('reservation_id');
             $table->timestamps();
         });
     }

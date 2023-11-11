@@ -16,15 +16,15 @@ class RoomSlotService
         $startDay = Carbon::createFromFormat('Y-m-d', $request->start_day);
         $endDay = Carbon::createFromFormat('Y-m-d', $request->end_day);
         $roomMasterIds = $request->room_type_id;
-        // dd($roomMasterIds);
 
         foreach ($roomMasterIds as $roomMasterId) {
-            for ($i = $startDay->copy(); $i->lte($endDay); $i->addDay()) {
-                    RoomSlot::create([
-                        'room_master_id' => $roomMasterId,
-                        'day' => $i->toDateString(),
-                        'stock' => $request->stock,
-                    ]);
+            for ($day = $startDay->copy(); $day->lte($endDay); $day->addDay()) {
+                RoomSlot::firstOrCreate([
+                    'room_master_id' => $roomMasterId,
+                    'day' => $day->toDateString(),
+                ], [
+                    'stock' => $request->stock,
+                ]);
             }
         }
     }

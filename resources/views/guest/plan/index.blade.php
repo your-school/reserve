@@ -8,19 +8,23 @@
                     <div class="p-3 border border-gray-300 rounded my-5  bg-gray-100">
                         <div class="flex items-center pb-2 border-b border-gray-300 mb-5">
                             {{-- <img src="{{ asset('svg/human_icon.svg') }}" alt="customIcon" class="ml-0.5 w-4 h-4"> --}}
-                            <span class="ml-2 text-gray-900 text-lg font-bold">詳細検索</span>
+                            <span class="ml-2 text-gray-900 text-lg font-bold">詳細検索
+                            </span>
                         </div>
                         <form action="{{ route('plan.search') }}" method="GET">
                             <div class="container mx-auto my-8">
                                 <h1 class="text-lg font-bold mb-2 ml-2">日付</h1>
+
                                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                                     <div class="flex flex-col">
-                                        <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md">
+                                        <input type="date" id="start_day" name="start_day" class="p-2 border rounded-md"
+                                            value="{{ session('startDate') }}">
                                     </div>
                                     <div class="flex flex-col p-2">〜
                                     </div>
                                     <div class="flex flex-col">
-                                        <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md">
+                                        <input type="date" id="end_day" name="end_day" class="p-2 border rounded-md"
+                                            value="{{ session('endDate') }}">
                                     </div>
                                 </div>
                             </div>
@@ -30,10 +34,12 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
 
-                <div class="py-4 px-5 text-2xl font-bold bg-red-100 mb-16 md:mt-0">宿泊プラン一覧</div>
+                <div class="py-4 px-5 text-2xl font-bold bg-red-100 mb-16 md:mt-0">宿泊プラン一覧　@if (isset($searchedString))
+                        /　{{ $searchedString }}
+                    @endif
+                </div>
 
                 <div class="flex">
                     <button id="planButton"

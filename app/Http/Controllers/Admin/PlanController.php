@@ -20,6 +20,12 @@ class PlanController extends Controller
 {
     private Plan $plan;
 
+    public function __construct(Plan $plan)
+    {
+        $this->plan = $plan;
+    }
+
+
     // 一覧画面を表示
     public function index()
     {
@@ -44,49 +50,57 @@ class PlanController extends Controller
         return view('admin.plan.index', compact('plans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // 新規作成画面を表示
     public function create()
     {
 
         return view('admin.plan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // 新規作成画面からの登録処理
     public function store(PlanRequest $request)
     {
-        PlanService::store($request);
+        // dd($request->all());
+        PlanService::storePlan($request);
 
-        return redirect()->route('admin.plan.index')->with('success', '宿泊プランを作成しました。');
+        return redirect()->route('admin.plan.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    // 編集画面を表示
+    public function edit(Plan $plan)
     {
-        //
+        $roomSlots = $plan->roomSlots()->get();
+
+        $startDay = $roomSlots->min('day');
+        $endDay = $roomSlots->max('day');
+
+        // RoomSlotをEager Loadし、その後フィルタリングして、
+        // 各room_master_idごとに一つだけ取得する。
+        $prices = $roomSlots->groupBy('room_master_id')
+            ->mapWithKeys(function ($roomSlots, $roomMasterId) {
+                // groupByがコレクションを返すため、最初のRoomSlotを取得します。
+                return [$roomMasterId => $roomSlots->first()->pivot->price];
+            });
+
+        // viewにplanと価格情報を渡す。
+        return view('admin.plan.edit', compact('plan', 'prices', 'startDay', 'endDay'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    // 更新処理
+    public function update(Request $request, Plan $plan)
     {
-        //
+        PlanService::updatePlan($request, $plan);
+
+        return redirect()->route('admin.plan.index')->with('success', '宿泊プランを更新しました。');
     }
 
+    // 削除処理
     public function destroy(Plan $plan)
     {
         if (!$plan) {

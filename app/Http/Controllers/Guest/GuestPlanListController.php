@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Plan;
 use App\Models\RoomSlot;
+use Carbon\Carbon;
 
 class GuestPlanListController extends Controller
 {
@@ -104,14 +105,32 @@ class GuestPlanListController extends Controller
     public function search(Request $request)
     {
 
-        $startDate = $request->input('start_day');
-        $endDate = $request->input('end_day');
+        $startDate = Carbon::parse($request->input('start_day'));
+        $endDate = Carbon::parse($request->input('end_day'));
 
         $plans = Plan::whereHas('roomSlots', function ($query) use ($startDate, $endDate) {
             $query->whereBetween('day', [$startDate, $endDate]);
         })->get();
 
+        foreach ($plans as $plan) {
+            $groupedRooms = $plan->roomSlots->groupBy(function ($slot) {
+                return $slot->room_master_id;
+            });
+            $plan->groupedRooms = $groupedRooms;
+        }
+
+        $searchedString = "{$startDate->format('m月d日')} ~ {$endDate->format('m月d日')}";
+
+        // 日付を文字列に変換
+        $startDateString = $startDate->toDateString();
+        $endDateString = $endDate->toDateString();
+
+        // セッションにフラッシュ
+        session()->flash('startDate', $startDateString);
+        session()->flash('endDate', $endDateString);
+
+
         // ここで、$Plans をビューに渡して表示します
-        return view('guest.plan.index', compact('plans'));
+        return view('guest.plan.index', compact('plans', 'searchedString'));
     }
 }

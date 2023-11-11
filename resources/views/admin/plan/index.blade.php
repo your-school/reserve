@@ -7,19 +7,34 @@
         <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl md:max-w-6xl">
             <div class="w-full overflow-hidden">
                 <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">宿泊プラン一覧</div>
-
+                <form action="{{ route('admin.plan.create') }}" method="get">
+                    <div class="flex justify-center my-6">
+                        <button type="submit"
+                            class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
+                            宿泊プランを作成する
+                        </button>
+                    </div>
+                </form>
                 @foreach ($plans as $plan)
                     <div class="w-full p-4 md:my-8 md:mx-1 my-3 bg-gray-200 rounded">
                         <div class="flex justify-between">
                             <div class="pb-3 ml-2 text-2xl font-bold">{{ $plan->title }}</div>
-                            <form action="{{ route('admin.plan.destroy', $plan) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return confirm('本当に削除しますか？')"
-                                    class="mb-4 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg py-3 w-32 flex justify-center items-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
-                                    削除
-                                </button>
-                            </form>
+                            <div class="flex justify-center items-center">
+                                <form action="{{ route('admin.plan.edit', $plan) }}" method="get">
+                                    <button type="submit"
+                                        class="mx-2 mb-4 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg py-3 w-32 flex justify-center items-center dark:bg-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600">
+                                        編集
+                                    </button>
+                                </form>
+                                <form action="{{ route('admin.plan.destroy', $plan) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('本当に削除しますか？')"
+                                        class="mx-2 mb-4 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg py-3 w-32 flex justify-center items-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
+                                        削除
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                         <div class="">
                             <div class="flex mb-5">
@@ -101,11 +116,6 @@
                         </div>
                     </div>
                 @endforeach
-
-
-
-
-
                 <form action="{{ route('admin.plan.create') }}" method="get">
                     <div class="flex justify-center my-16">
                         <button type="submit"
@@ -115,8 +125,6 @@
                     </div>
                 </form>
             </div>
-
         </section>
-
     </main>
 @endsection

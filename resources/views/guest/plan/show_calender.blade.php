@@ -97,6 +97,18 @@
                 events: events,
                 eventClick: function(info) {
                     window.location.href = info.event.url; // イベントのURLへ遷移
+                },
+                dayCellDidMount: function(cellInfo) {
+                    var today = new Date();
+                    today.setHours(0, 0, 0, 0); // Set to start of day
+
+                    if (cellInfo.date < today) {
+                        cellInfo.el.style.backgroundColor = '#d3d3d3'; // Gray for past dates
+                    } else if (cellInfo.date.getUTCDay() === 6) {
+                        cellInfo.el.style.backgroundColor = '#e0ffff'; // Blue for Saturday
+                    } else if (cellInfo.date.getUTCDay() === 0) {
+                        cellInfo.el.style.backgroundColor = '#ffc0cb'; // Red for Sunday
+                    }
                 }
             });
 

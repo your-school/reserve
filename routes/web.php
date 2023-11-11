@@ -10,10 +10,6 @@ use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Guest\GuestReservationController;
 use App\Http\Controllers\Guest\GuestPlanListController;
 
-
-use App\Models\Reservation;
-use App\Models\ReservationSlot;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

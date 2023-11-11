@@ -8,6 +8,7 @@ use App\Models\Plan;
 use App\Models\PlanRoom;
 use App\Models\PlanImages;
 use Storage;
+use Illuminate\Http\Request;
 
 
 
@@ -16,7 +17,7 @@ use Storage;
 class PlanService
 {
     // プラン情報を登録
-    public static function store($request)
+    public static function storePlan($request)
     {
         $startDay = Carbon::parse($request->start_day);
         $endDay = Carbon::parse($request->end_day);
@@ -50,6 +51,17 @@ class PlanService
                 'title' => $request->title,
                 'explain' => $request->explain,
             ]);
+
+            foreach ($allMatchingRoomSlots as $roomMasterId => $matchingRoomSlots) {
+                // 部屋枠の数だけプラン部屋テーブルにプラン情報を作成
+                foreach ($matchingRoomSlots as $matchingRoomSlot) {
+                    PlanRoom::create([
+                        'plan_id' => $plan->id,
+                        'room_slot_id' => $matchingRoomSlot->id,
+                        'price' => $roomInputs[$roomMasterId],
+                    ]);
+                }
+            }
 
 
             // // PlanImagesテーブルに画像データの挿入
@@ -94,13 +106,57 @@ class PlanService
                 ]);
             }
         });
+
+        return  redirect()->back()->with('success', '宿泊プランを作成しました。');
     }
 
     // プラン情報を更新
-    public static function update(object $request, Plan $plan)
+    public static function updatePlan(Request $request, Plan $plan)
     {
-        $plan->update([
-            'stock' => $request->input('stock'),
-        ]);
+        \DB::transaction(static function () use ($request, $plan) {
+            $plan->update([
+                'title' => $request['title'],
+                'explain' => $request['explain'],
+            ]);
+
+            // 送信された部屋タイプの料金のみを取得
+            $roomInputs = collect($request['price'])->filter(function ($value) {
+                return !is_null($value) && $value !== '';
+            });
+
+
+            foreach ($request['room_master_id'] as $roomMasterId) {
+                $matchingRoomSlots = RoomSlot::where('room_master_id', $roomMasterId)
+                    ->whereBetween('day', [$request['start_day'], $request['end_day']])
+                    ->get();
+
+                if ($matchingRoomSlots->isEmpty()) {
+                    throw new \Exception('指定した日付の予約枠が存在しません。');
+                }
+
+                // PlanRoomの更新または作成
+                foreach ($matchingRoomSlots as $matchingRoomSlot) {
+                    PlanRoom::updateOrCreate(
+                        ['plan_id' => $plan->id, 'room_slot_id' => $matchingRoomSlot->id],
+                        ['price' => $roomInputs[$roomMasterId]]
+                    );
+                }
+            }
+
+            // PlanImagesの更新または作成
+            if ($request->hasFile('image')) {
+                $upload_file = $request->file('image');
+                $dir = 'images';
+                $file_name = $upload_file->getClientOriginalName();
+                \Storage::disk('public')->putFileAs($dir, $upload_file, $file_name);
+
+                PlanImages::updateOrCreate(
+                    ['plan_id' => $plan->id],
+                    ['image_path' => $file_name, 'image_url' => 'storage/' . $dir . '/' . $file_name]
+                );
+            }
+        });
+
+        return  redirect()->back()->with('success', '宿泊プランを作成しました。');
     }
 }

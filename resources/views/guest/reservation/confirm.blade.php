@@ -53,6 +53,7 @@
                 <div class="mb-8">
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">苗字:</label>
                     {{ $request->first_name }}
+                    {{-- {{ session('last_name') }} --}}
                 </div>
 
                 <!-- 名前 -->
