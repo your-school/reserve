@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('message')->nullable();
             $table->date('start_day');
             $table->date('end_day');
-            $table->integer('reservation_status')->nullable();
+            $table->integer('reservation_status')->default(false);
             $table->text('admin_memo')->nullable();
             $table->integer('total_price')->nullable();
             $table->boolean('cancel_flag')->default(false);

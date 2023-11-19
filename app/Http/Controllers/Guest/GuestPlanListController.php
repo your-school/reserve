@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Plan;
 use App\Models\RoomSlot;
 use Carbon\Carbon;
+use App\Http\Requests\SearchReservationRequest;
 
 class GuestPlanListController extends Controller
 {
@@ -41,18 +42,6 @@ class GuestPlanListController extends Controller
     }
 
 
-    // public function create()
-    // {
-    //     //
-    // }
-
-
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-
     public function show(Plan $plan)
     {
         $groupedRooms = $plan->roomSlots->groupBy(function ($slot) {
@@ -83,26 +72,8 @@ class GuestPlanListController extends Controller
         return view('guest.plan.show_calender', compact('plan', 'roomSlots', 'roomMasterId'));
     }
 
-
-    // public function edit(string $id)
-    // {
-    //     //
-    // }
-
-
-    // public function update(Request $request, string $id)
-    // {
-    //     //
-    // }
-
-
-    public function destroy(string $id)
-    {
-        //
-    }
-
     // プランの検索機能
-    public function search(Request $request)
+    public function search(SearchReservationRequest $request)
     {
 
         $startDate = Carbon::parse($request->input('start_day'));

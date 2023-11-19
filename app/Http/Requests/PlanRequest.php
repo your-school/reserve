@@ -31,10 +31,10 @@ class PlanRequest extends FormRequest
             ],
             'title' => ['required', 'string', 'min:2'],
             'explain' => ['required', 'string'],
-            'image' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
+            'images' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ];
 
-        foreach($this->input('room_master_id', []) as $roomId) {
+        foreach ($this->input('room_master_id', []) as $roomId) {
             $rules["price.$roomId"] = 'required|integer|min:1';
         }
 
@@ -50,7 +50,7 @@ class PlanRequest extends FormRequest
             'title' => "タイトル",
             'price.*' => "料金",
             'explain' => "説明",
-            'image' => "画像",
+            'images' => "画像",
         ];
     }
 
@@ -67,9 +67,9 @@ class PlanRequest extends FormRequest
             'title.required' =>  ":attributeは必須です。",
             'price.required' =>  ":attributeは必須です。",
             'explain.required' =>  ":attributeは必須です。",
-            'image.image' => ':attributeは画像ファイルを選択してください。',
-            'image.mimes' => ':attributeはjpeg,png,jpg,gif,svgのいずれかのファイルを選択してください。',
-            'image.max' => ':attributeは2MB以下のファイルを選択してください。',
+            'images.image' => ':attributeは画像ファイルを選択してください。',
+            'images.mimes' => ':attributeはjpeg,png,jpg,gif,svgのいずれかのファイルを選択してください。',
+            'images.max' => ':attributeは2MB以下のファイルを選択してください。',
         ];
     }
 }

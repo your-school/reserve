@@ -36,7 +36,8 @@ class Reservation extends Model
         'end_day',
         'total_price',
         'admin_memo',
-        'cancel',
+        'cancel_flag',
+        'reservation_status'
     ];
 
     public function planRooms(): BelongsToMany

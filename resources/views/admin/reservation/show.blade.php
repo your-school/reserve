@@ -4,7 +4,12 @@
 @section('content')
     <main>
         <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl">
-            <h1 class="block text-4xl font-bold text-gray-800 text-black mb-11 text-center">予約内容詳細</h1>
+            <h1 class="block text-4xl font-bold text-gray-800 text-black mb-10 text-center">予約内容詳細</h1>
+
+            @if ($reservation->cancel_flag == 1)
+                <div class="block text-xl font-bold text-red-500  mb-11 text-center border border-red-500 py-2">キャンセル済みの予約です
+                </div>
+            @endif
 
 
             <div class="mb-8">
@@ -38,7 +43,7 @@
             <div class="mb-8">
                 <label for="number_of_people" class="block mb-2 text-lg font-medium text-black mb-4">宿泊期間</label>
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                    <div class="flex flex-col">
+                    <div class="flex flex-col font-bold">
                         {{ $reservation->start_day }}　〜　{{ $reservation->end_day }}
                     </div>
                 </div>
@@ -47,49 +52,65 @@
             <!-- 苗字 -->
             <div class="mb-8">
                 <label for="first_name" class="block mb-2 text-lg font-medium text-black">苗字:</label>
-                {{ $reservation->first_name }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->first_name }}
+                </div>
             </div>
 
             <!-- 名前 -->
             <div class="mb-8">
                 <label for="last_name" class="block mb-2 text-lg font-medium text-black">名前:</label>
-                {{ $reservation->last_name }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->last_name }}
+                </div>
             </div>
 
             <!-- 宿泊人数 -->
             <div class="mb-8">
                 <label for="number_of_people" class="block mb-2 text-lg font-medium text-black">宿泊人数</label>
-                {{ $reservation->number_of_people }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->number_of_people }}
+                </div>
             </div>
 
             <!-- メールアドレス -->
             <div class="mb-8">
                 <label for="email" class="block mb-2 text-lg font-medium text-black">メールアドレス</label>
-                {{ $reservation->email }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->email }}
+                </div>
             </div>
 
             <!-- 電話番号 -->
             <div class="mb-8">
                 <label for="phone_number" class="block mb-2 text-lg font-medium text-black">電話番号</label>
-                {{ $reservation->phone_number }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->phone_number }}
+                </div>
             </div>
 
             <!-- 郵便番号 -->
             <div class="mb-8">
                 <label for="post_code" class="block mb-2 text-lg font-medium text-black">郵便番号</label>
-                {{ $reservation->post_code }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->post_code }}
+                </div>
             </div>
 
             <!-- 住所 -->
             <div class="mb-8">
                 <label for="address" class="block mb-2 text-lg font-medium text-black">住所</label>
-                {{ $reservation->address }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->address }}
+                </div>
             </div>
 
             <!-- メッセージ -->
             <div class="mb-8">
                 <label for="message" class="block mb-2 text-lg font-medium text-black">メッセージ</label>
-                {{ $reservation->message }}
+                <div class="flex flex-col font-bold">
+                    {{ $reservation->message }}
+                </div>
             </div>
 
             <form id="inquiry-form" method="POST" action="{{ route('admin.reservation.update', $reservation) }}"
@@ -113,16 +134,17 @@
                         class="font-semibold text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600 mb-4">変更する</button>
                 </div>
             </form>
-            <div class="flex items-center justify-center mb-16">
-                <form action="{{ route('admin.reservation.destroy', $reservation) }}" method="POST" class="mt-4">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('本当に削除しますか？')"
-                        class="font-semibold text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
-                        予約キャンセル
-                    </button>
-                </form>
-            </div>
+            @if ($reservation->cancel_flag == 0)
+                <div class="flex items-center justify-center mb-16">
+                    <form action="{{ route('admin.reservation.cancel', $reservation) }}" method="POST" class="mt-4">
+                        @csrf
+                        <button type="submit" onclick="return confirm('本当にキャンセルしますか？')"
+                            class="font-semibold text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
+                            予約キャンセル
+                        </button>
+                    </form>
+                </div>
+            @endif
 
         </section>
     </main>

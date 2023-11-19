@@ -14,17 +14,8 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 
 
-
 class GuestReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     // 予約画面を表示
     public function create(string $planRoomId)
     {
@@ -33,13 +24,14 @@ class GuestReservationController extends Controller
     }
 
     // 予約確認画面を表示
-    public function confirm(Request $request)
+    public function confirm(GuestReservationRequest $request)
     {
         // session()->put($request->all());
         // flashは連想配列で受け取れないためForeachで回して保存
         foreach ($request->all() as $key => $value) {
             session()->flash($key, $value);
         }
+        session()->flash('total_price', $request['single_price'] * $request['number_of_people']);
         return view('guest.reservation.confirm', [
             'request' => $request,
             'planRoom' => PlanRoom::find($request->plan_room_id),
@@ -47,44 +39,17 @@ class GuestReservationController extends Controller
     }
 
     // 予約の保存
-    public function store(Request $request)
+    public function store()
     {
         ReservationService::storeReservation(session()->all());
 
         return redirect()->route('home')->with('success', '予約を完了しました');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+
 
     public function checkStock($startDay, $endDay, $roomMasterId, $planId)
     {

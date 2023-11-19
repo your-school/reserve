@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('create:room-slot-data')->weeklyOn(1, '00:00');
         $schedule->command('send:reservation-reminders')->daily();
-        $schedule->command('delete:exceed-room-slots')->daily();
+        $schedule->command('send:reservation-reminder-next-day')->daily('10:00');
+        // $schedule->command('delete:exceed-room-slots')->daily();
     }
 
     /**

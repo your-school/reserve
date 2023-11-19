@@ -28,26 +28,24 @@
 
                 @foreach ($inquiries as $inquiry)
                     <a href="{{ route('admin.inquiries.show', ['id' => $inquiry->id]) }}" class="w-full md:w-2/3">
-                        <div class="border-t hover:bg-gray-200 click:bg-gray-400 rounded">
+                        <div
+                            class="border-t hover:bg-gray-200 click:bg-gray-400 rounded @if ($inquiry->status == 2) bg-gray-400 hover:bg-gray-500 @endif">
                             <div class="py-6 px-5 flex flex-wrap">
-                                <div class="w-full overflow-hidden md:w-4/6">
-                                    <div class="">
-                                        <div class=""><span
-                                                class="font-bold text-2xl">{{ $inquiry['inquiry_category'] }}</span>
-                                        </div>
+                                <div class="w-full overflow-hidden">
+                                    <div class="mb-3"><span
+                                            class="font-semibold text-lg">{{ $inquiry['inquiry_category'] }}のお問い合わせ</span>
                                     </div>
-                                    <div class="text-xs my-0.5"><span class="font-bold">苗字 :</span><span
-                                            class="ml-1.5">{{ $inquiry['first_name'] }}</div>
-                                    <div class="text-xs my-2"><span class="font-bold">名前 :</span><span
-                                            class="ml-1.5">{{ $inquiry['last_name'] }}</div>
+                                    <div class="text-xs my-0.5"><span class="font-medium">お名前 :</span><span
+                                            class="ml-1.5 font-medium">{{ $inquiry['first_name'] }}
+                                            {{ $inquiry['last_name'] }} 様</div>
                                     @if ($inquiry->status == 0)
-                                        <div class="text-xs my-2"><span class="font-bold">対応ステータス :</span><span
-                                                class="ml-1.5 font-bold">未対応</div>
+                                        <div class="text-xs my-2"><span class="font-medium">対応ステータス :</span><span
+                                                class="ml-1.5 font-bold text-red-500">未対応</div>
                                     @elseif($inquiry->status == 1)
-                                        <div class="text-xs my-2"><span class="font-bold">対応ステータス :</span><span
-                                                class="ml-1.5">対応中</div>
+                                        <div class="text-xs my-2"><span class="font-medium">対応ステータス :</span><span
+                                                class="ml-1.5 font-bold">対応中</div>
                                     @elseif($inquiry->status == 2)
-                                        <div class="text-xs my-2"><span class="font-bold">対応ステータス :</span><span
+                                        <div class="text-xs my-2"><span class="font-medium">対応ステータス :</span><span
                                                 class="ml-1.5">対応済み</div>
                                     @endif
                                 </div>

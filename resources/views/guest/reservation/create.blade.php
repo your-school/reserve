@@ -8,6 +8,7 @@
                 @method('POST')
                 @csrf
                 <input type='hidden' name='plan_room_id' value="{{ $planRoom['id'] }}">
+                <input type='hidden' name='single_price' value="{{ $planRoom->price }}">
 
                 <h1 class="block text-4xl font-bold text-gray-800 text-black mb-11 text-center">予約フォーム </h1>
 

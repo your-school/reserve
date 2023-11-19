@@ -34,7 +34,16 @@
                     <label for="first_name" class="block mb-2 text-lg font-medium text-black">料金</label>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <div class="flex flex-col font-bold">
-                            {{ $planRoom->price }}円
+                            1人あたり:{{ number_format($planRoom->price) }}円
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label for="first_name" class="block mb-2 text-lg font-medium text-black">料金</label>
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="flex flex-col font-bold">
+                            総額：{{ number_format(session('total_price')) }}円
                         </div>
                     </div>
                 </div>

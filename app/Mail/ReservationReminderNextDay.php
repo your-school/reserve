@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ReservationReminder extends Mailable
+class ReservationReminderNextDay extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -22,9 +22,8 @@ class ReservationReminder extends Mailable
 
     public function build()
     {
-        return $this->view('reservationMail.reservationReminder')
-        ->subject('【宿泊一週間前のリマインドのお知らせ】')
-        ->with([
+        return $this->view('emails.reservation_reminder_next_day')
+            ->with([
                 'reservation' => $this->reservation,
             ]);
     }

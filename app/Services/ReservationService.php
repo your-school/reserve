@@ -9,6 +9,7 @@ use App\Models\Reservation;
 use Carbon\Carbon;
 use App\Mail\ToCustomerReservationMail;
 use App\Mail\ToAdminReservationMail;
+use App\Mail\ToCustomerCancelMail;
 
 
 class ReservationService
@@ -38,6 +39,7 @@ class ReservationService
                 'message' =>  $request['message'],
                 'start_day' => $startDay,
                 'end_day' => $endDay,
+                'total_price'   => $request['total_price']
             ]);
 
             // ltメソッドは、引数のCarbonインスタンスよりも小さいかどうかを判定する。
@@ -77,5 +79,36 @@ class ReservationService
         return $reservation->update([
             'admin_memo' =>  $request['admin_memo'],
         ]);
+    }
+
+    // チェックイン情報を更新
+    public static function checkInReservation(Reservation $reservation): bool
+    {
+        $reservation->update([
+            'reservation_status' =>  1,
+        ]);
+
+        return true;
+    }
+
+    // 予約のキャンセル処理
+    public static function cancelReservation(Reservation $reservation)
+    {
+        \DB::transaction(function () use ($reservation) {
+            $reservation->update([
+                'cancel_flag' =>  1,
+            ]);
+
+            $roomSlots = RoomSlot::whereHas('planRooms.reservations', function ($query) use ($reservation) {
+                $query->where('reservations.id', $reservation->id);
+            })->get();
+
+            foreach ($roomSlots as $roomSlot) {
+                $count = $roomSlot->stock;
+                $roomSlot->stock = $count + 1;
+                $roomSlot->save();
+            }
+            \Mail::to($reservation['email'])->send(new ToCustomerCancelMail($reservation));
+        });
     }
 }

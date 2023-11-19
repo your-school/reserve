@@ -85,8 +85,8 @@
                             <h1 class="text-2xl font-bold mb-4">画像</h1>
                             <div class="flex flex-col space-y-4">
                                 <div class="flex flex-col">
-                                    <input type="file" id="image" name="image" class="p-2 border rounded-md"
-                                        placeholder="">
+                                    <input type="file" id="image" name="images[]" class="p-2 border rounded-md"
+                                        multiple>
                                 </div>
                             </div>
                         </div>

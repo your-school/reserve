@@ -53,14 +53,12 @@ class PlanController extends Controller
     // 新規作成画面を表示
     public function create()
     {
-
         return view('admin.plan.create');
     }
 
     // 新規作成画面からの登録処理
     public function store(PlanRequest $request)
     {
-        // dd($request->all());
         PlanService::storePlan($request);
 
         return redirect()->route('admin.plan.index');
@@ -93,7 +91,7 @@ class PlanController extends Controller
 
 
     // 更新処理
-    public function update(Request $request, Plan $plan)
+    public function update(PlanRequest $request, Plan $plan)
     {
         PlanService::updatePlan($request, $plan);
 

@@ -63,47 +63,62 @@ class PlanService
                 }
             }
 
-
-            // // PlanImagesテーブルに画像データの挿入
-            if ($request->hasFile('image')) {
+            // PlanImagesテーブルに画像データの挿入
+            if ($request->hasFile('images')) {
                 // アップロードされたファイルを変数に格納
-                $upload_file = $request->file('image');
+                foreach ($request->file('images') as $upload_file) {
+                    // ディレクトリ名
+                    $dir = 'images';
+                    // アップロードされたファイル名を取得
+                    $file_name = $upload_file->getClientOriginalName();
+                    // 画像の保存
+                    \Storage::disk('public')->putFileAs($dir, $upload_file, $file_name);
 
-                // ディレクトリ名
-                $dir = 'images';
+                    PlanImages::create([
+                        'image_path' => $file_name,
+                        'image_url' => 'storage/' . $dir . '/' . $file_name,
+                        'plan_id' => $plan->id
+                    ]);
+                }
 
-                // アップロードされたファイル名を取得
-                $file_name = $request->file('image')->getClientOriginalName();
-                // 一意のファイル名を生成 (例: originalFileName_timestamp.ext)
-                // $file_name = pathinfo($upload_file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time() . '.' . $upload_file->getClientOriginalExtension();
+                // // アップロードされたファイルを変数に格納
+                // $upload_file = $request->file('images');
+
+                // // ディレクトリ名
+                // $dir = 'images';
+
+                // // アップロードされたファイル名を取得
+                // $file_name = $upload_file->getClientOriginalName();
+                // // 一意のファイル名を生成 (例: originalFileName_timestamp.ext)
+                // // $file_name = pathinfo($upload_file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time() . '.' . $upload_file->getClientOriginalExtension();
 
 
-                // 取得したファイル名で保存
-                // storage/app/public/任意のディレクトリ名/
-                \Storage::disk('public')->putFileAs($dir, $upload_file, $file_name);
+                // // 取得したファイル名で保存
+                // // storage/app/public/任意のディレクトリ名/
+                // \Storage::disk('public')->putFileAs($dir, $upload_file, $file_name);
 
 
-                // // アップロード先S3フォルダ名
-                // $dir = 'reservesystem';
+                // // // アップロード先S3フォルダ名
+                // // $dir = 'reservesystem';
 
-                // // バケット内の指定フォルダへアップロード ※putFileはLaravel側でファイル名の一意のIDを自動的に生成してくれます。
-                // $s3_upload = Storage::disk('s3')->putFile('/' . $dir, $upload_file);
+                // // // バケット内の指定フォルダへアップロード ※putFileはLaravel側でファイル名の一意のIDを自動的に生成してくれます。
+                // // $s3_upload = Storage::disk('s3')->putFile('/' . $dir, $upload_file);
 
-                // // ※オプション（ファイルダウンロード、削除時に使用するS3でのファイル保存名、アップロード先のパスを取得します。）
-                // // アップロードファイルurlを取得
-                // $s3_url = Storage::disk('s3')->url($s3_upload);
+                // // // ※オプション（ファイルダウンロード、削除時に使用するS3でのファイル保存名、アップロード先のパスを取得します。）
+                // // // アップロードファイルurlを取得
+                // // $s3_url = Storage::disk('s3')->url($s3_upload);
 
-                // // s3_urlからS3でのファイル保存名取得
-                // $s3_upload_file_name = explode("/", $s3_url)[5];
+                // // // s3_urlからS3でのファイル保存名取得
+                // // $s3_upload_file_name = explode("/", $s3_url)[5];
 
-                // // アップロード先パスを取得 ※ファイルダウンロード、削除で使用します。
-                // $s3_path = $dir . '/' . $s3_upload_file_name;
+                // // // アップロード先パスを取得 ※ファイルダウンロード、削除で使用します。
+                // // $s3_path = $dir . '/' . $s3_upload_file_name;
 
-                PlanImages::create([
-                    'image_path' => $file_name,
-                    'image_url' => 'storage/' . $dir . '/' . $file_name,
-                    'plan_id' => $plan->id
-                ]);
+                // PlanImages::create([
+                //     'image_path' => $file_name,
+                //     'image_url' => 'storage/' . $dir . '/' . $file_name,
+                //     'plan_id' => $plan->id
+                // ]);
             }
         });
 
@@ -126,34 +141,56 @@ class PlanService
 
 
             foreach ($request['room_master_id'] as $roomMasterId) {
-                $matchingRoomSlots = RoomSlot::where('room_master_id', $roomMasterId)
-                    ->whereBetween('day', [$request['start_day'], $request['end_day']])
-                    ->get();
+                $currentMatchingRoomSlots = RoomSlot::where('room_master_id', $roomMasterId)
+                    ->whereHas('planRooms', function ($query) use ($plan) {
+                        $query->where('plan_id', $plan->id);
+                    })->pluck('id')->toArray();
 
-                if ($matchingRoomSlots->isEmpty()) {
+                $submittedRoomSlots = RoomSlot::where('room_master_id', $roomMasterId)
+                    ->whereBetween('day', [$request['start_day'], $request['end_day']])->get();
+
+                if ($submittedRoomSlots->isEmpty()) {
                     throw new \Exception('指定した日付の予約枠が存在しません。');
                 }
 
+                $submittedMatchingRoomSlots = $submittedRoomSlots->pluck('id')->toArray();
+
+                // 削除分のRoomSlotsを取得
+                $roomSlotsToDelete = array_diff($currentMatchingRoomSlots, $submittedMatchingRoomSlots);
+
+                // PlanRoomの削除
+                foreach ($roomSlotsToDelete as $roomSlotToDelete) {
+                    PlanRoom::where(
+                        ['plan_id' => $plan->id, 'room_slot_id' => $roomSlotToDelete]
+                    )->delete();
+                }
+
                 // PlanRoomの更新または作成
-                foreach ($matchingRoomSlots as $matchingRoomSlot) {
+                foreach ($submittedMatchingRoomSlots as $matchingRoomSlot) {
                     PlanRoom::updateOrCreate(
-                        ['plan_id' => $plan->id, 'room_slot_id' => $matchingRoomSlot->id],
+                        ['plan_id' => $plan->id, 'room_slot_id' => $matchingRoomSlot],
                         ['price' => $roomInputs[$roomMasterId]]
                     );
                 }
             }
 
             // PlanImagesの更新または作成
-            if ($request->hasFile('image')) {
-                $upload_file = $request->file('image');
-                $dir = 'images';
-                $file_name = $upload_file->getClientOriginalName();
-                \Storage::disk('public')->putFileAs($dir, $upload_file, $file_name);
+            if ($request->hasFile('images')) {
+                // アップロードされたファイルを変数に格納
+                foreach ($request->file('images') as $upload_file) {
+                    // ディレクトリ名
+                    $dir = 'images';
+                    // アップロードされたファイル名を取得
+                    $file_name = $upload_file->getClientOriginalName();
+                    // 画像の保存
+                    \Storage::disk('public')->putFileAs($dir, $upload_file, $file_name);
 
-                PlanImages::updateOrCreate(
-                    ['plan_id' => $plan->id],
-                    ['image_path' => $file_name, 'image_url' => 'storage/' . $dir . '/' . $file_name]
-                );
+                    PlanImages::create([
+                        'image_path' => $file_name,
+                        'image_url' => 'storage/' . $dir . '/' . $file_name,
+                        'plan_id' => $plan->id
+                    ]);
+                }
             }
         });
 

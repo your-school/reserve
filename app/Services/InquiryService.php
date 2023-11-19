@@ -22,12 +22,14 @@ class InquiryService
             'inquiry_category' => $request['inquiry_category'],
             'content' => $request['content'],
             'status' => '0',
+            'created_at' => Carbon::now(),
+            'updated_at' => NULL,
         ]);
 
         $full_name = $request['first_name'] . ' ' . $request['last_name'];
 
-        \Mail::to($request->email) -> send(new ToCustomerMail($request['content'], $full_name));
-        \Mail::to('hello@example.com') -> send(new ToAdminMail($request['content'], $full_name));
+        \Mail::to($request->email)->send(new ToCustomerMail($request['content'], $full_name));
+        \Mail::to('hello@example.com')->send(new ToAdminMail($request['content'], $full_name));
     }
 
     /**

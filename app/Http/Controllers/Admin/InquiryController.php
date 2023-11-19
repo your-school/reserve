@@ -13,9 +13,7 @@ use App\Services\InquiryService;
 
 class InquiryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // お問合せ一覧
     public function index()
     {
         $inquiries = Inquiries::latestOrder()->paginate(10);
@@ -31,9 +29,7 @@ class InquiryController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // お問合せ投稿（ゲスト側）
     public function store(InquiryRequest $request)
     {
         InquiryService::store($request);
@@ -41,9 +37,7 @@ class InquiryController extends Controller
         return redirect()->route('home')->with('success', 'お問合せが完了しました。返答までしばしお待ちください。');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // お問い合わせ詳細
     public function show(string $id)
     {
         $inquiry = Inquiries::find($id);
@@ -51,17 +45,7 @@ class InquiryController extends Controller
         return view('admin.inquiries.show', compact('inquiry'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    // /お問合せのステータス変更
     public function update(Request $request, string $id)
     {
         $inquiry = Inquiries::find($id);
