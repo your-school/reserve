@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-11T17:02:34.424Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="-mj5D46aYAO9p141acw_" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-19T01:57:06.994Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="VZjWHbRp494PS0Bo5qOr" version="22.1.3" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="2404" dy="1932" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -622,9 +622,6 @@
               <mxPoint x="440" y="335" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="xgFBi112i9guJ70MiZaF-1" value="RoomPlan" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="130" y="248" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="xgFBi112i9guJ70MiZaF-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;" parent="1" source="xgFBi112i9guJ70MiZaF-5" target="xgFBi112i9guJ70MiZaF-9" edge="1">
           <mxGeometry relative="1" as="geometry">
