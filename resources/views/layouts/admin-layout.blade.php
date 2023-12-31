@@ -45,16 +45,12 @@
 <body>
 
     <header x-data="{ open: false }"
-        class="fixed inset-x-0 top-0 z-50 py-2 bg-gradient-to-br from-red-600 via-indigo-00 to-red-300 tails-selected-element mx-auto"
+        class="fixed inset-x-0 top-0 z-50 py-2 bg-gradient-to-br from-blue-600 via-indigo-00 to-sky-300 tails-selected-element mx-auto"
         data-primary="red-500" data-tails-scripts="//unpkg.com/alpinejs">
         <div class="flex items-center justify-between h-20 px-8 mx-auto max-w-7xl">
-
-
-
-
             <a class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-white select-none"
                 href="{{ url('admin/home') }}">
-                <span class="ml-3 text-xl">管理者サイド</span>
+                <span class="ml-3 text-xl">管理者ページ</span>
             </a>
 
             <nav class="items-center justify-center hidden space-x-7 text-white md:flex">
@@ -65,7 +61,7 @@
                         <span class="block">ホーム</span>
                         <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                             <span x-show="hover"
-                                class="absolute inset-0 inline-block w-full h-full transform border-t-2 border-red-200"
+                                class="absolute inset-0 inline-block w-full h-full transform border-t-2 border-indigo-200"
                                 x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                                 x-transition:leave="transition ease-out duration-300"
@@ -82,7 +78,7 @@
                         <span class="block">アクセス案内</span>
                         <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                             <span x-show="hover"
-                                class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                                class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-indigo-200"
                                 x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                                 x-transition:leave="transition ease-out duration-300"
@@ -98,7 +94,7 @@
                     <span class="block">お問合せ対応</span>
                     <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                         <span x-show="hover"
-                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-indigo-200"
                             x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                             x-transition:leave="transition ease-out duration-300"
@@ -113,7 +109,7 @@
                     <span class="block">予約枠管理</span>
                     <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                         <span x-show="hover"
-                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-indigo-200"
                             x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                             x-transition:leave="transition ease-out duration-300"
@@ -128,7 +124,7 @@
                     <span class="block">宿泊プラン管理</span>
                     <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                         <span x-show="hover"
-                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-indigo-200"
                             x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                             x-transition:leave="transition ease-out duration-300"
@@ -143,7 +139,7 @@
                     <span class="block">予約管理</span>
                     <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                         <span x-show="hover"
-                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                            class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-indigo-200"
                             x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                             x-transition:leave="transition ease-out duration-300"
@@ -165,7 +161,7 @@
                             </svg></span>
                         <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                             <span x-show="hover"
-                                class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                                class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-indigo-200"
                                 x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                                 x-transition:leave="transition ease-out duration-300"
@@ -188,7 +184,7 @@
                             </svg></span>
                         <span class="absolute bottom-0 left-0 inline-block w-full h-1 -mb-1 overflow-hidden">
                             <span x-show="hover"
-                                class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-red-200"
+                                class="absolute inset-0 inline-block w-full h-1 h-full transform border-t-2 border-indigo-200"
                                 x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                                 x-transition:leave="transition ease-out duration-300"
@@ -201,14 +197,14 @@
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
             		document.getElementById('logout-form').submit();"
-                    class="relative inline-flex items-center justify-start px-4 py-3 overflow-hidden font-medium transition-all bg-red-500 rounded-xl group">
+                    class="relative inline-flex items-center justify-start px-4 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-xl group">
                     <span
-                        class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-red-700 rounded group-hover:-mr-4 group-hover:-mt-4">
+                        class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4">
                         <span
                             class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
                     </span>
                     <span
-                        class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-red-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
+                        class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-indigo-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
                     <span
                         class="relative inline-flex items-center w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">
                         <svg class="h-6 w-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"

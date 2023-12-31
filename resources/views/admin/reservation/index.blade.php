@@ -43,7 +43,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">
+                <div class="py-4 px-5 text-2xl font-bold bg-blue-100 mt-5 md:mt-0">
                     @if (isset($searchedString))
                         {{ $searchedString . 'の' }}
                     @endif

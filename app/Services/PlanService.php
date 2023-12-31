@@ -196,4 +196,14 @@ class PlanService
 
         return  redirect()->back()->with('success', '宿泊プランを作成しました。');
     }
+
+    // プランの料金情報を更新
+    public static function updatePlanCharge(Request $request, PlanRoom $planRoom)
+    {
+        \DB::transaction(static function () use ($request, $planRoom) {
+            $planRoom->update([
+                'price' => $request['price'],
+            ]);
+        });
+    }
 }

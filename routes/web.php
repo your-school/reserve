@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Guest\GuestReservationController;
 use App\Http\Controllers\Guest\GuestPlanListController;
+use App\Http\Controllers\Auth\PasswordController;
 
 
 Route::get('/', function () {
@@ -40,6 +41,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('room_slot', RoomSlotController::class);
 
     // プラン
+    Route::get('/plan/charge_edit/{plan}/{room_master_id}', [PlanController::class, 'chargeEdit'])->name('plan.charge.edit');
+    Route::post('/plan/charge_update/{plan_room}}', [PlanController::class, 'chargeUpdate'])->name('plan.charge.update');
+    Route::post('/plan/ond_delete/{plan_room}}', [PlanController::class, 'oneDelete'])->name('plan.delete.one');
     Route::resource('plan', PlanController::class);
 
     // 予約情報
@@ -49,10 +53,14 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/reservation/next_day', [ReservationController::class, 'nextDayReservation'])->name('reservation.nextday');
     Route::post('/reservation/search', [ReservationController::class, 'searchReservation'])->name('reservation.search');
     Route::resource('reservation', ReservationController::class);
+
+    // パスワード変更
+    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 });
 
-Route::middleware('guest')->group(function () {
 
+// ゲスト側
+Route::middleware('guest')->group(function () {
     // お問い合わせ投稿
     Route::get('/inquiry', function () {
         return view('guest.inquiry');

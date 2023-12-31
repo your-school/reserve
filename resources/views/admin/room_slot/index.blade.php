@@ -6,11 +6,11 @@
     <main>
         <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl md:max-w-6xl">
             <div class="w-full overflow-hidden">
-                <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">予約枠一覧</div>
+                <div class="py-4 px-5 text-2xl font-bold bg-blue-100 mt-5 md:mt-0">予約枠一覧</div>
                 <form action="{{ route('admin.room_slot.create') }}" method="get">
                     <div class="flex justify-center my-6">
                         <button type="submit"
-                            class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
+                            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600">
                             部屋枠を作成する
                         </button>
                     </div>
@@ -40,7 +40,7 @@
                                                     <input type="number" id="stock" name="stock"
                                                         value="{{ $roomSlot->stock }}" class="p-1 border rounded-md w-1/4">
                                                     <button type="submit"
-                                                        class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg py-3 w-24 flex justify-center items-center">
+                                                        class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-lg py-3 w-24 flex justify-center items-center">
                                                         変更
                                                     </button>
                                                 </form>
@@ -71,7 +71,7 @@
                 <form action="{{ route('admin.room_slot.create') }}" method="get">
                     <div class="flex justify-center my-6">
                         <button type="submit"
-                            class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
+                            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-20 py-3 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600">
                             部屋枠を作成する
                         </button>
                     </div>

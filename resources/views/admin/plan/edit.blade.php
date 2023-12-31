@@ -6,13 +6,13 @@
     <main>
         <section class="px-6 py-10 mx-auto tails-selected-element max-w-2xl">
             <div class="w-full">
-                <div class="py-4 px-5 text-2xl font-bold bg-red-100 mt-5 md:mt-0">宿泊プラン編集</div>
+                <div class="py-4 px-5 text-2xl font-bold bg-blue-100 mt-5 md:mt-0">宿泊プラン編集</div>
                 <form action="{{ route('admin.plan.update', $plan) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="flex-grow flex flex-col inline-flex items-center">
                         <div class="container mx-auto my-8 ml-2">
-                            <h1 class="text-2xl font-bold mb-2">部屋タイプ選択</h1>
+                            <h1 class="text-2xl font-bold mb-2">部屋タイプと料金の一括変更</h1>
                             <div>
                                 <label>
                                     <input type="checkbox" name="room_master_id[]" value="1"

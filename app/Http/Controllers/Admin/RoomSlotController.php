@@ -18,14 +18,14 @@ class RoomSlotController extends Controller
      */
     public function index()
     {
-    $roomTypes = RoomMaster::get();
-    $slots = [];
+        $roomTypes = RoomMaster::get();
+        $slots = [];
 
-    foreach ($roomTypes as $roomType) {
-        $roomSlots = RoomSlot::where('room_master_id', $roomType['id'])->get();
-        $slots[$roomType['id']] = $roomSlots;
-    }
-    return view('admin.room_slot.index', compact( 'roomTypes', 'slots'));
+        foreach ($roomTypes as $roomType) {
+            $roomSlots = RoomSlot::where('room_master_id', $roomType['id'])->where('day', '>=', Carbon::today())->get();
+            $slots[$roomType['id']] = $roomSlots;
+        }
+        return view('admin.room_slot.index', compact('roomTypes', 'slots'));
     }
 
     /**
@@ -44,7 +44,7 @@ class RoomSlotController extends Controller
     public function store(RoomSlotRequest $request)
     {
         RoomSlotService::store($request);
-        
+
         return redirect()->route('admin.room_slot.index')->with('success', '部屋枠を作成しました。');
     }
 
@@ -70,7 +70,7 @@ class RoomSlotController extends Controller
     public function update(Request $request, RoomSlot $roomSlot)
     {
         RoomSlotService::update($request, $roomSlot);
-        
+
         return redirect()->route('admin.room_slot.index')->with('success', '部屋枠の数を変更しました。');
     }
 

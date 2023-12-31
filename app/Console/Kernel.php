@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('create:room-slot-data')->weeklyOn(1, '00:00');
+        // 一週間前の予約リマインドメールを送信
         $schedule->command('send:reservation-reminders')->daily();
+        // 翌日の予約リマインドメールを送信
         $schedule->command('send:reservation-reminder-next-day')->daily('10:00');
         // $schedule->command('delete:exceed-room-slots')->daily();
     }

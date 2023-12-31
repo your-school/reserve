@@ -54,7 +54,7 @@
 
             <a class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-white select-none"
                 href="{{ url('/') }}">
-                <span class="ml-3 text-xl">予約システム</span>
+                <span class="ml-3 text-xl">宿の予約サイト</span>
             </a>
 
             <nav class="items-center justify-center hidden space-x-7 text-white md:flex">
@@ -126,7 +126,7 @@
                         </a>
                     @show
 
-                    <a href="{{ route('login') }}" x-data="{ hover: false }" @mouseenter="hover = true"
+                    {{-- <a href="{{ route('login') }}" x-data="{ hover: false }" @mouseenter="hover = true"
                         @mouseleave="hover = false"
                         class="relative inline-block text-sm font-bold hover:text-gray-200 uppercase transition duration-150 lg:text-base ease text-white">
                         <span class="block">ログイン</span>
@@ -139,10 +139,10 @@
                                 x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
                                 data-primary="red-600" style="display: none;"></span>
                         </span>
-                    </a>
+                    </a> --}}
                 @endguest
 
-                @auth
+                {{-- @auth
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
             		document.getElementById('logout-form').submit();"
@@ -166,7 +166,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                @endauth
+                @endauth --}}
 
             </nav>
 
@@ -176,8 +176,7 @@
 
     @if (session('success'))
         <div class="flex container mx-auto w-full flex-col text-center mt-20">
-            <div class="mt-10 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3"
-                role="alert">
+            <div class="mt-10 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
                 <p class="font-bold">{{ session('success') }}</p>
             </div>
         </div>
