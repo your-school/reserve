@@ -12,7 +12,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('create:room-slot-data')->weeklyOn(1, '00:00');
+        // 一週間前の予約リマインドメールを送信
+        $schedule->command('send:reservation-reminders')->daily();
+        // 翌日の予約リマインドメールを送信
+        $schedule->command('send:reservation-reminder-next-day')->daily('10:00');
+        // $schedule->command('delete:exceed-room-slots')->daily();
     }
 
     /**
@@ -20,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

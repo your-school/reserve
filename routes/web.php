@@ -3,27 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\InquiryController;
-use App\Http\Controllers\ReservationSlotController;
-use App\Http\Controllers\StayingPlanController;
-use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\GuestPlanListController;
-use App\Http\Controllers\GuestReservationController;
+use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\RoomSlotController;
+use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\Guest\GuestReservationController;
+use App\Http\Controllers\Guest\GuestPlanListController;
+use App\Http\Controllers\Auth\PasswordController;
 
-
-use App\Models\Reservation;
-use App\Models\ReservationSlot;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('home');
@@ -33,46 +20,74 @@ Route::get('/access_guide', function () {
     return view('guest.access-guide');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin_home', function () {
+// 管理者側
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/home', function () {
         return view('admin.home');
-    })->name('admin_home');
+    })->name('home');
+
+    // プロフィール編集
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // お問合せ対応
     Route::get('/inquiries/show/{id}', [InquiryController::class, 'show'])->name('inquiries.show');
     Route::patch('/inquiries/update/{id}', [InquiryController::class, 'update'])->name('inquiries.update');
     Route::get('/inquiries', [InquiryController::class, 'index'])->name('inquiries.index');
-    Route::resource('reservation_slot', ReservationSlotController::class);
-    Route::delete('reservation_slot/{room_master_id}/delete_by_date', [ReservationSlotController::class, 'deleteByDate'])->name('reservation_slot.delete_by_date');
-    Route::resource('staying_plan', StayingPlanController::class);
+
+    // 予約枠
+    Route::resource('room_slot', RoomSlotController::class);
+
+    // プラン
+    Route::get('/plan/charge_edit/{plan}/{room_master_id}', [PlanController::class, 'chargeEdit'])->name('plan.charge.edit');
+    Route::post('/plan/charge_update/{plan_room}}', [PlanController::class, 'chargeUpdate'])->name('plan.charge.update');
+    Route::post('/plan/ond_delete/{plan_room}}', [PlanController::class, 'oneDelete'])->name('plan.delete.one');
+    Route::resource('plan', PlanController::class);
+
+    // 予約情報
+    Route::post('/reservation/cancel/{reservation}', [ReservationController::class, 'cancel'])->name('reservation.cancel');
+    Route::post('/reservation/check_in/{reservation}', [ReservationController::class, 'checkIn'])->name('reservation.check_in');
+    Route::get('/reservation/today', [ReservationController::class, 'todayReservation'])->name('reservation.today');
+    Route::get('/reservation/next_day', [ReservationController::class, 'nextDayReservation'])->name('reservation.nextday');
+    Route::post('/reservation/search', [ReservationController::class, 'searchReservation'])->name('reservation.search');
     Route::resource('reservation', ReservationController::class);
 
-
+    // パスワード変更
+    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 });
 
+
+// ゲスト側
 Route::middleware('guest')->group(function () {
+    // お問い合わせ投稿
     Route::get('/inquiry', function () {
         return view('guest.inquiry');
     })->name('inquiry');
-
     Route::post('/inquiry', function () {
         return redirect()->route('home')->with('success', 'お問い合わせを受け付けました。');
     })->name('inquiry.send');
-
     Route::post('/inquiry/store', [InquiryController::class, 'store'])
         ->name('inquiry.store');
 
+    // プランの閲覧
     Route::get('/plan/search', [GuestPlanListController::class, 'search'])->name('plan.search');
+    Route::get('/plan/show_calender/{plan}/{roomMasterId}', [GuestPlanListController::class, 'showCalender'])->name('plan.showCalender');
     Route::resource('plan', GuestPlanListController::class);
-    Route::get('reservation/create/{id}', [GuestReservationController::class, 'create'])->name('reservation.create');
+
+    // 予約の申し込み
+    Route::get('reservation/create/{planRoomId}', [GuestReservationController::class, 'create'])->name('reservation.create');
+    Route::post('reservation/confirm', [GuestReservationController::class, 'confirm'])->name('reservation.confirm');
     Route::resource('reservation', GuestReservationController::class)->except('create');
-        
 });
 
+// アドミンの開発環境ログイン
+Route::get('admin_dev_login', function () {
+    abort_unless(app()->environment('local'), 403);
+    auth()->login(App\Models\User::first());
+    return redirect()->to('/admin/home');
+})->name('admin_dev_login');
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

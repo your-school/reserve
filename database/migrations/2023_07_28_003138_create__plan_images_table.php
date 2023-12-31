@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('plan_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('staying_plan_id')->constrained();
-            $table->text('image_path');
+            $table->foreignId('plan_id')->constrained();
+            $table->string('image_url');
+            $table->string('image_path');
             $table->timestamps();
         });
     }

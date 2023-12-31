@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('room_masters', function (Blueprint $table) {
             $table->id();
-            $table->integer('room_type');
+            $table->string('name');
             $table->integer('capacity');
-            $table->string('image')->nullable();
+            $table->string('image_url')->nullable();
             $table->text('explain');
             $table->text('facility');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

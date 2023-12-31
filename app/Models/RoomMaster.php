@@ -9,8 +9,8 @@ class RoomMaster extends Model
 {
     use HasFactory;
 
-    public function reservationSlots()
+    public function roomSlots()
     {
-        return $this->hasMany(ReservationSlot::class);
+        return $this->hasMany(RoomSlot::class);
     }
 }
